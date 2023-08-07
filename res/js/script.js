@@ -7,7 +7,7 @@ $(document).ready(function() {
     $(window).on("scroll", function(){
         var scrollDistance = $(window).scrollTop();
         var maxOpacity = 0.8;  // imposta l'opacità massima che desideri qui
-        var activationDistance = 256;  // imposta la distanza di scroll prima che inizi la trasparenza
+        var activationDistance = 128;  // imposta la distanza di scroll prima che inizi la trasparenza
 
         if (scrollDistance <= activationDistance) {
             $('.shadow-top-bar').css('opacity', 0);
