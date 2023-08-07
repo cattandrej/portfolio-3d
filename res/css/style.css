@@ -304,6 +304,11 @@ strong {
 
     .project-details {
         opacity: 0%;
+        z-index: 600;
+        height: 120px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
     }
 
     .project-details p {
@@ -311,6 +316,7 @@ strong {
         line-height: 1.5; /* Assicura un buon allineamento verticale del testo */
         display: flex;
         align-items: center;
+        
     }
 
     .right-arrow {
@@ -359,7 +365,7 @@ strong {
     }
 
     .project:hover .project-details {
-
+        transform: translateX(50%);
         opacity: 100%;
     }
 
