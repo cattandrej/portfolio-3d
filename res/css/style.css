@@ -479,6 +479,10 @@ strong {
         font-size: 20px;
     }
 
+    .logo-mobile {
+        display: none;
+    }
+
     .menu-toggle {
         cursor: pointer;
         height: 64px;
