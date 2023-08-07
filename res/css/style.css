@@ -30,6 +30,11 @@ a {
 }
 
 /* Stili di Base (Mobile First) */
+html {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
 body {
     background-color: var(--color-bg-light);
     color: var(--color-text-light);
@@ -125,51 +130,51 @@ strong {
 }
 
 /* Usato per definire la larghezza delle colonne */
-.col-span-1 {
+.col-s-1 {
     grid-column: span 1;
 }
 
-.col-span-2 {
+.col-s-2 {
     grid-column: span 2;
 }
 
-.col-span-3 {
+.col-s-3 {
     grid-column: span 3;
 }
 
-.col-span-4 {
+.col-s-4 {
     grid-column: span 4;
 }
 
-.col-span-5 {
+.col-s-5 {
     grid-column: span 5;
 }
 
-.col-span-6 {
+.col-s-6 {
     grid-column: span 6;
 }
 
-.col-span-7 {
+.col-s-7 {
     grid-column: span 7;
 }
 
-.col-span-8 {
+.col-s-8 {
     grid-column: span 8;
 }
 
-.col-span-9 {
+.col-s-9 {
     grid-column: span 9;
 }
 
-.col-span-10 {
+.col-s-10 {
     grid-column: span 10;
 }
 
-.col-span-11 {
+.col-s-11 {
     grid-column: span 11;
 }
 
-.col-span-12 {
+.col-s-12 {
     grid-column: span 12;
 }
 
@@ -183,10 +188,272 @@ strong {
     user-select: none;
 }
 
+/*  *********************************************************** */
+
+/* CSS MOBILE */
+
+/* ************************************************************ */
+
+
+#menuContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+#menuLabel {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.logo {
+    height: 64px;
+    line-height: 64px;
+    font-size: 20px;
+}
+
+.menu-toggle {
+    cursor: pointer;
+    height: 64px;
+    line-height: 64px;
+    width: 128px;
+    align-items: center;
+    justify-content: center;
+    text-align: end;
+}
+.menu-container {
+    height: 256px;
+}
+
+.menu-list li {
+    text-align: end;
+}
+
+.menu-list {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.menu-list a {
+    display: block;
+    color: var(--color-accent);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity .25s ease-in-out, transform .25s ease;
+}
+
+.menu-list a:hover {
+    color: white;
+}
+
+.menu-active .menu-list a {
+    opacity: 1;
+    transform: translateY(10px);
+    visibility: visible; 
+  }
+
+
+.menu-list li:nth-child(1) a {
+    transition-delay: 0s; /* nessun ritardo per il primo elemento */
+}
+
+.menu-list li:nth-child(2) a {
+    transition-delay: 0.05s; /* 0.5s di ritardo per il secondo elemento */
+}
+
+.menu-list li:nth-child(3) a {
+    transition-delay: .1s; /* 1s di ritardo per il terzo elemento */
+}
+
+.menu-list li:nth-child(4) a {
+    transition-delay: .15s /* 1.5s di ritardo per il quarto elemento */
+}
+
+.section-title {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 96px;
+}
+
+.project {
+    height: 500px; /* Altezza fissa */
+    align-items: center; /* Centra verticalmente gli elementi figli */
+    transition: all 0.3s ease; /* Transizione fluida per gli effetti di hover */
+    max-width: 100%; /* Larghezza massima */
+    cursor: pointer;
+}
+
+.project-description {
+    overflow: visible; /* Cambiato da hidden a visible */
+    width: 100%;
+    line-height: 48px;
+    padding: 0px 20px;
+}
+
+.project-title {
+    white-space: nowrap; /* Evita che il testo vada a capo */
+    transition: all 0.3s ease; /* Transizioni per font-size e right */
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.project-subtitle {
+    padding-top: 16px;
+}
+
+.project-subtitle, .project-details {
+    padding-left: 0%;
+    transition: all 0.3s ease; /* Transizioni per font-size e right */
+    line-height: 24px;
+}
+
+.project-details {
+    opacity: 0%;
+    z-index: 600;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+.project-details p {
+    font-size: 16px; /* Puoi modificare questo valore in base alle tue esigenze */
+    line-height: 1.5; /* Assicura un buon allineamento verticale del testo */
+    display: flex;
+    align-items: center;
+    
+}
+
+.right-arrow {
+    width: 30px; /* Regola la larghezza dell'SVG */
+    height: 16px; /* Regola l'altezza dell'SVG */
+    background: url('../img/right-arrow.svg') no-repeat center center;
+    background-size: contain; /* Questo farà in modo che l'SVG si adatti alle dimensioni del contenitore */
+    margin-left: 8px; /* Distanza dalla parola "more." */
+}
+.project-image {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    transform: translateX(0);
+    transition: all 0.3s ease;
+}
+
+.project-image::before {
+    content: ""; 
+    display: block;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.project-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;         
+}
+
+/* Effetti di hover */
+.project:hover .project-title {
+    position: relative; /* Posizionamento relativo per sovrapporsi all'immagine */
+    padding-left: 12.5%; /* Fa uscire il testo dal suo contenitore */
+    z-index: 10; /* Sovrapponi al resto del contenuto */
+    color: var(--color-accent)
+}
+
+.project:hover .project-subtitle, .project:hover .project-details {
+    position: relative; /* Posizionamento relativo per sovrapporsi all'immagine */
+    padding-left: 12.5%; /* Fa uscire il testo dal suo contenitore */
+}
+
+.project:hover .project-details {
+    transform: translateX(0%);
+    opacity: 100%;
+}
+
+.project:hover .project-image {
+    transform: translateX(12.5%);
+    filter: drop-shadow(0 0 32px rgba(0, 0, 0, .25));
+}
+
+.top-bar {
+    position: fixed;
+    z-index: 5000;;
+}
+
+.shadow-top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 128px; /* puoi modificare l'altezza come desideri */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    z-index: 499; /* Così appare sotto la top-bar */
+    opacity: 0; /* inizialmente trasparente */
+}
+
+.projects {
+    height: 6;
+}
+
+
+/* ************************************************************ */
+
 
 /* Media Query per Tablet */
 @media (min-width: 768px) {
     /* Adatta o estende gli stili per tablet ... */
+
+    .col-m-1 {
+        grid-column: span 1;
+    }
+    
+    .col-m-2 {
+        grid-column: span 2;
+    }
+    
+    .col-m-3 {
+        grid-column: span 3;
+    }
+    
+    .col-m-4 {
+        grid-column: span 4;
+    }
+    
+    .col-m-5 {
+        grid-column: span 5;
+    }
+    
+    .col-m-6 {
+        grid-column: span 6;
+    }
+    
+    .col-m-7 {
+        grid-column: span 7;
+    }
+    
+    .col-m-8 {
+        grid-column: span 8;
+    }
+    
+    .col-m-9 {
+        grid-column: span 9;
+    }
+    
+    .col-m-10 {
+        grid-column: span 10;
+    }
+    
+    .col-m-11 {
+        grid-column: span 11;
+    }
+    
+    .col-m-12 {
+        grid-column: span 12;
+    }
 
     #menuContainer {
         display: flex;
@@ -322,7 +589,7 @@ strong {
     .right-arrow {
         width: 30px; /* Regola la larghezza dell'SVG */
         height: 16px; /* Regola l'altezza dell'SVG */
-        background: url('/res/img/right-arrow.svg') no-repeat center center;
+        background: url('../img/right-arrow.svg') no-repeat center center;
         background-size: contain; /* Questo farà in modo che l'SVG si adatti alle dimensioni del contenitore */
         margin-left: 8px; /* Distanza dalla parola "more." */
     }
