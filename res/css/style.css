@@ -1,0 +1,184 @@
+/* Reset di Base */
+html, body, div, h1, h2, h3, h4, h5, h6, p, ol, ul, li, dl, dt, dd, img, form, fieldset, input, textarea, blockquote {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Definizione Variabili per Temi e Colore di Accento */
+:root {
+    /* Tema Chiaro */
+    --color-bg-light: #ffffff; /* Colore di sfondo */
+    --color-text-light: #333333; /* Colore del testo */
+    
+    /* Tema Scuro */
+    --color-bg-dark: #1a1a1a;
+    --color-text-dark: #e6e6e6;
+    
+    /* Colore di Accento */
+    --color-accent: #ff4500;
+}
+
+/* Stili di Base (Mobile First) */
+body {
+    background-color: var(--color-bg-light);
+    color: var(--color-text-light);
+    font-family: 'Helvetica', Arial, sans-serif;
+    line-height: 1.6;
+    position: relative; 
+    overflow: hidden;
+}
+
+/* ... altri stili di base ... */
+
+
+.background-layer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1; 
+    background: url('/res/img/bg-noise.png'), radial-gradient(at bottom left, #333, #1a1a1a);
+    background-size: repeat;
+    background-blend-mode: overlay;
+    opacity: .333;
+}
+
+.column-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 1400px;  /* come la max-width della griglia */
+    width: 100%;  /* Questo assicura che prenda l'intera larghezza fino al max-width */
+    z-index: -1;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.column-background > * {
+    position: relative;
+}
+
+.column-background > *::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.1);  /* Colore delle linee */
+}
+
+.column-background > *:first-child::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.1);  /* Colore delle linee */
+}
+
+.content-container {
+    padding: 20px 0;
+    max-width: 1400px;
+    margin: 0 auto;
+    z-index: 0; /* Garantisce che il contenuto sia al di sopra delle colonne/background */
+    position: relative; 
+}
+
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1px; /* Crea il "filetto" tra le colonne */
+    max-width: 1400px; /* Imposta la larghezza massima per desktop */
+    margin: 0 auto; /* Centra il contenitore dei contenuti */
+    width: 100%; 
+}
+
+.col {
+    padding: 0px 20px;
+    /* ... [altri stili per il contenuto] ... */
+}
+
+/* Usato per definire la larghezza delle colonne */
+.col-span-1 {
+    grid-column: span 1;
+}
+
+.col-span-2 {
+    grid-column: span 2;
+}
+
+.col-span-3 {
+    grid-column: span 3;
+}
+
+.col-span-4 {
+    grid-column: span 4;
+}
+
+.col-span-5 {
+    grid-column: span 5;
+}
+
+.col-span-6 {
+    grid-column: span 6;
+}
+
+.col-span-7 {
+    grid-column: span 7;
+}
+
+.col-span-8 {
+    grid-column: span 8;
+}
+
+.col-span-9 {
+    grid-column: span 9;
+}
+
+.col-span-10 {
+    grid-column: span 10;
+}
+
+.col-span-11 {
+    grid-column: span 11;
+}
+
+.col-span-12 {
+    grid-column: span 12;
+}
+
+
+/* Media Query per Tablet */
+@media (min-width: 768px) {
+    /* Adatta o estende gli stili per tablet ... */
+}
+
+/* Media Query per Desktop */
+@media (min-width: 1024px) {
+    /* Adatta o estende gli stili per desktop ... */
+}
+
+/* Funzionalità Tema Scuro (potresti voler utilizzare una classe o un attributo data-* sul body in base alla scelta dell'utente) */
+[data-theme="dark"] {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-dark);
+    /* Aggiungi altri stili per il tema scuro se necessario */
+}
