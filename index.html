@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+
+  <script type="text/javascript">
+    // Ottieni la lingua dell'utente
+    var userLang = navigator.language || navigator.userLanguage;
+
+    // Se la lingua inizia con "it", reindirizza a /it/index.html
+    if (userLang.startsWith("it")) {
+      window.location.href = "it/";
+    }
+    // Altrimenti, reindirizza a /en/index.html
+    else {
+      window.location.href = "en/";
+    }
+  </script>
+
+</body>
+
+</html>
