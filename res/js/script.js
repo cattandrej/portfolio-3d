@@ -1,9 +1,12 @@
 $(document).ready(function() {
+
+    let isMobile = $(window).width() < 768;
+
+
     $('.menu-toggle').on('click', function() {
         let menuContainer = $('#menuContainer');
         let menuOverlay = $('.menu-overlay');
         let menuListContainer = $('#menuListContainer');
-        let isMobile = $(window).width() < 768;
     
         if (menuContainer.hasClass('menu-active')) {
             // Se il menu è attualmente attivo, chiudilo
@@ -68,8 +71,6 @@ $(document).ready(function() {
 
     $(".project-title p").each(function() {
 
-        let isMobile = $(window).width() < 768;
-
         if (isMobile) {
 
             var $this = $(this);
@@ -95,8 +96,53 @@ $(document).ready(function() {
                 scrollText();
             }
 
+        }  else {
+            $(".project").each(function() {
+                var $project = $(this);
+                var $title = $project.find(".project-title p");
+                var originalText = $title.text();
+                var hoverTimeout;
+                var spaceWidth = 100; // Larghezza dello spazio in pixel
+                var numOfCopies = 10; // numero fisso di duplicati
+            
+                var setCorrectText = function() {
+                    // Genera lo spazio utilizzando un elemento <span>
+                    var space = $('<span class="space">').css('width', spaceWidth + 'px');
+            
+                    // Duplica il testo il numero desiderato di volte con lo spazio tra le repliche
+                    var newText = "";
+                    for (var i = 0; i < numOfCopies; i++) {
+                        newText += originalText + space[0].outerHTML;
+                    }
+                    $title.html(newText);
+                    
+                    return {
+                        single: $title.width() / numOfCopies,
+                        total: $title.width()
+                    };
+                };
+            
+                var startAnimation = function(widths) {
+                    // Animiamo solo sulla larghezza del testo originale più lo spazio
+                    var animationDuration = 7500;
+                    $title.stop().animate({ "margin-left": (-2 * (widths.single) + spaceWidth) }, animationDuration, "linear", function() {
+                        $title.css("margin-left", 0);
+                        startAnimation(widths);
+                    });
+                };
+            
+                $project.hover(
+                    function() { // Mouse enter
+                        var widths = setCorrectText();
+                        hoverTimeout = setTimeout(() => startAnimation(widths), 500);
+                    },
+                    function() { // Mouse leave
+                        clearTimeout(hoverTimeout);
+                        $title.stop().css("margin-left", 0).text(originalText);
+                    }
+                );
+            });
         }
-
     });
     
 });

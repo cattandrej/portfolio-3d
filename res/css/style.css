@@ -745,9 +745,9 @@ strong {
     }
 
     .project:hover .img-overlay {
-        background: linear-gradient(to right, rgba(0, 0, 0, 5), rgba(0, 0, 0, 0.25));
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 5), rgba(0, 0, 0, 0.25));
         mix-blend-mode: multiply;
-        opacity: .75;
+        opacity: .85;
     }
     
 }
