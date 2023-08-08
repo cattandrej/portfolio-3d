@@ -326,6 +326,10 @@ strong {
     padding-top: 16px;
 }
 
+.project-title p {
+    width: fit-content;
+}
+
 .project-subtitle {
     padding-top: 0px;
 }
@@ -464,16 +468,17 @@ strong {
     transition: opacity .25s ease;
 }
 
-.project:hover .img-overlay {
-    background: linear-gradient(to right, rgba(0, 0, 0, 5), rgba(0, 0, 0, 0.25));
-    mix-blend-mode: multiply;
-    opacity: .75;
-}
 
 
 .hide {
     display: none;
     visibility: hidden;
+}
+
+.space {
+    display: inline-block;
+    background-color: transparent;
+    height: 1px;
 }
 
 /* ************************************************************ */
@@ -738,6 +743,13 @@ strong {
     .projects {
         height: 6;
     }
+
+    .project:hover .img-overlay {
+        background: linear-gradient(to right, rgba(0, 0, 0, 5), rgba(0, 0, 0, 0.25));
+        mix-blend-mode: multiply;
+        opacity: .75;
+    }
+    
 }
 
 /* Media Query per Desktop */

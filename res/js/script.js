@@ -65,4 +65,30 @@ $(document).ready(function() {
             $('.shadow-top-bar').css('opacity', maxOpacity);
         }
     });
+
+    $(".project-title p").each(function() {
+        var $this = $(this);
+        var parentWidth = $this.parent().width();
+        var textWidth = $this.width();
+        var spaceWidth = 50; // Larghezza dello spazio in pixel
+        
+        if (textWidth > parentWidth) {
+            // Genera lo spazio utilizzando un elemento <span>
+            var space = $('<span class="space">').css('width', spaceWidth + 'px');
+            
+            // Duplica il testo e aggiungi lo spazio tra le repliche
+            $this.html($this.text() + space[0].outerHTML + $this.text());
+
+            function scrollText() {
+                // Scorrimento del testo fino alla metà della sua lunghezza complessiva
+                $this.animate({ "margin-left": -(textWidth + spaceWidth) }, 15000, "linear", function() {
+                    $this.css("margin-left", 0); // Resetta la posizione senza soluzione di continuità
+                    scrollText(); // Ricomincia l'animazione
+                });
+            }
+
+            scrollText();
+        }
+    });
+    
 });
