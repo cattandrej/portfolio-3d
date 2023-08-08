@@ -1,20 +1,62 @@
 $(document).ready(function() {
     $('.menu-toggle').on('click', function() {
-        $('#menuContainer').toggleClass('menu-active');
-        if ($(window).width() < 768) {
-            if ($('#menuListContainer').hasClass("menu-list-container")) {
-                // Se l'elemento ha già la classe, ritarda la rimozione di 0,5 secondi
+        let menuContainer = $('#menuContainer');
+        let menuOverlay = $('.menu-overlay');
+        let menuListContainer = $('#menuListContainer');
+        let isMobile = $(window).width() < 768;
+    
+        if (menuContainer.hasClass('menu-active')) {
+            // Se il menu è attualmente attivo, chiudilo
+            menuContainer.removeClass('menu-active');
+
+            // Ritarda l'aggiunta di 0.5 secondi
+            setTimeout(() => {
+                menuListContainer.addClass("hide");
+            }, 500);
+
+    
+            if (isMobile) {
+                menuOverlay.addClass('menu-overlay-closed');
+    
+                // Ritarda l'aggiunta di 'display: none' di 0.5 secondi
                 setTimeout(() => {
-                    $('#menuListContainer').toggleClass("menu-list-container");
+                    menuOverlay.css('display', 'none');
                 }, 500);
-            } else {
-                // Altrimenti, aggiungi la classe immediatamente
-                $('#menuListContainer').toggleClass("menu-list-container");
+    
+                if (menuListContainer.hasClass("menu-list-container")) {
+                    // Ritarda la rimozione di 0.5 secondi
+                    setTimeout(() => {
+                        menuListContainer.removeClass("menu-list-container");
+                    }, 500);
+                }
             }
-            $('.menu-overlay').toggle(); // Mostra/nasconde l'overlay
+    
+            // Cambia la visibilità tra MENU e la X
+            $('#menuLabel').show();
+            $('#closeLabel').hide();
+    
+        } else {
+            // Altrimenti, apri il menu
+            menuContainer.addClass('menu-active');
+
+            menuListContainer.removeClass("hide");
+
+    
+            if (isMobile) {
+                menuOverlay.removeClass('menu-overlay-closed').css('display', 'block');
+    
+                if (!menuListContainer.hasClass("menu-list-container")) {
+                    menuListContainer.addClass("menu-list-container");
+                }
+            }
+    
+            // Cambia la visibilità tra MENU e la X
+            $('#menuLabel').hide();
+            $('#closeLabel').show();
         }
-        $('#menuLabel, #closeLabel').toggle(); // Cambia la visibilità tra MENU e la X
     });
+    
+    
 
     $(window).on("scroll", function(){
         var scrollDistance = $(window).scrollTop();
