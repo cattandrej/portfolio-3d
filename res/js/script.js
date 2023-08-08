@@ -9,18 +9,12 @@ $(document).ready(function() {
             // Se il menu è attualmente attivo, chiudilo
             menuContainer.removeClass('menu-active');
 
-            // Ritarda l'aggiunta di 0.5 secondi
-            setTimeout(() => {
-                menuListContainer.addClass("hide");
-            }, 500);
-
-    
             if (isMobile) {
                 menuOverlay.addClass('menu-overlay-closed');
     
                 // Ritarda l'aggiunta di 'display: none' di 0.5 secondi
                 setTimeout(() => {
-                    menuOverlay.css('display', 'none');
+                    menuOverlay.addClass('hide');
                 }, 500);
     
                 if (menuListContainer.hasClass("menu-list-container")) {
@@ -39,11 +33,10 @@ $(document).ready(function() {
             // Altrimenti, apri il menu
             menuContainer.addClass('menu-active');
 
-            menuListContainer.removeClass("hide");
-
     
             if (isMobile) {
-                menuOverlay.removeClass('menu-overlay-closed').css('display', 'block');
+                menuOverlay.removeClass('menu-overlay-closed');
+                menuOverlay.removeClass('hide');
     
                 if (!menuListContainer.hasClass("menu-list-container")) {
                     menuListContainer.addClass("menu-list-container");

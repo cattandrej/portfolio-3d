@@ -272,6 +272,8 @@ strong {
     opacity: 1;
     transform: translateY(10px);
     visibility: visible; 
+    transition: opacity .25s ease-in-out, transform .25s ease;
+
   }
 
 
@@ -425,7 +427,6 @@ strong {
 }
 
 .menu-overlay {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -453,6 +454,7 @@ strong {
 
 .hide {
     display: none;
+    visibility: hidden;
 }
 
 /* ************************************************************ */
