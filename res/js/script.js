@@ -12,6 +12,10 @@ $(document).ready(function() {
             // Se il menu è attualmente attivo, chiudilo
             menuContainer.removeClass('menu-active');
 
+            setTimeout(() => {
+                menuListContainer.addClass('hide');
+            }, 500);
+            
             if (isMobile) {
                 menuOverlay.addClass('menu-overlay-closed');
     
@@ -34,21 +38,27 @@ $(document).ready(function() {
     
         } else {
             // Altrimenti, apri il menu
-            menuContainer.addClass('menu-active');
+            menuListContainer.removeClass('hide');
+
+            setTimeout(() =>  {
+                menuContainer.addClass('menu-active');
 
     
-            if (isMobile) {
-                menuOverlay.removeClass('menu-overlay-closed');
-                menuOverlay.removeClass('hide');
-    
-                if (!menuListContainer.hasClass("menu-list-container")) {
-                    menuListContainer.addClass("menu-list-container");
+                if (isMobile) {
+                    menuOverlay.removeClass('hide');
+                    menuOverlay.removeClass('menu-overlay-closed');
+                    
+        
+                    if (!menuListContainer.hasClass("menu-list-container")) {
+                        menuListContainer.addClass("menu-list-container");
+                    }
                 }
-            }
-    
-            // Cambia la visibilità tra MENU e la X
-            $('#menuLabel').hide();
-            $('#closeLabel').show();
+        
+                // Cambia la visibilità tra MENU e la X
+                $('#menuLabel').hide();
+                $('#closeLabel').show();
+            }, 5);
+
         }
     });
     
@@ -69,80 +79,82 @@ $(document).ready(function() {
         }
     });
 
-    $(".project-title p").each(function() {
+    setTimeout(() => {
+        $(".project-title p").each(function() {
 
-        if (isMobile) {
-
-            var $this = $(this);
-            var parentWidth = $this.parent().width();
-            var textWidth = $this.width();
-            var spaceWidth = 50; // Larghezza dello spazio in pixel
-            
-            if (textWidth > parentWidth) {
-                // Genera lo spazio utilizzando un elemento <span>
-                var space = $('<span class="space">').css('width', spaceWidth + 'px');
+            if (isMobile) {
+    
+                var $this = $(this);
+                var parentWidth = $this.parent().width();
+                var textWidth = $this.width();
+                var spaceWidth = 50; // Larghezza dello spazio in pixel
                 
-                // Duplica il testo e aggiungi lo spazio tra le repliche
-                $this.html($this.text() + space[0].outerHTML + $this.text());
-
-                function scrollText() {
-                    // Scorrimento del testo fino alla metà della sua lunghezza complessiva
-                    $this.animate({ "margin-left": -(textWidth + spaceWidth) }, 15000, "linear", function() {
-                        $this.css("margin-left", 0); // Resetta la posizione senza soluzione di continuità
-                        scrollText(); // Ricomincia l'animazione
-                    });
-                }
-
-                scrollText();
-            }
-
-        }  else {
-            $(".project").each(function() {
-                var $project = $(this);
-                var $title = $project.find(".project-title p");
-                var originalText = $title.text();
-                var hoverTimeout;
-                var spaceWidth = 100; // Larghezza dello spazio in pixel
-                var numOfCopies = 10; // numero fisso di duplicati
-            
-                var setCorrectText = function() {
+                if (textWidth > parentWidth) {
                     // Genera lo spazio utilizzando un elemento <span>
                     var space = $('<span class="space">').css('width', spaceWidth + 'px');
-            
-                    // Duplica il testo il numero desiderato di volte con lo spazio tra le repliche
-                    var newText = "";
-                    for (var i = 0; i < numOfCopies; i++) {
-                        newText += originalText + space[0].outerHTML;
-                    }
-                    $title.html(newText);
                     
-                    return {
-                        single: $title.width() / numOfCopies,
-                        total: $title.width()
-                    };
-                };
-            
-                var startAnimation = function(widths) {
-                    // Animiamo solo sulla larghezza del testo originale più lo spazio
-                    var animationDuration = 7500;
-                    $title.stop().animate({ "margin-left": (-2 * (widths.single) + spaceWidth) }, animationDuration, "linear", function() {
-                        $title.css("margin-left", 0);
-                        startAnimation(widths);
-                    });
-                };
-            
-                $project.hover(
-                    function() { // Mouse enter
-                        var widths = setCorrectText();
-                        hoverTimeout = setTimeout(() => startAnimation(widths), 500);
-                    },
-                    function() { // Mouse leave
-                        clearTimeout(hoverTimeout);
-                        $title.stop().css("margin-left", 0).text(originalText);
+                    // Duplica il testo e aggiungi lo spazio tra le repliche
+                    $this.html($this.text() + space[0].outerHTML + $this.text());
+    
+                    function scrollText() {
+                        // Scorrimento del testo fino alla metà della sua lunghezza complessiva
+                        $this.animate({ "margin-left": -(textWidth + spaceWidth) }, 15000, "linear", function() {
+                            $this.css("margin-left", 0); // Resetta la posizione senza soluzione di continuità
+                            scrollText(); // Ricomincia l'animazione
+                        });
                     }
-                );
-            });
-        }
-    });
+    
+                    scrollText();
+                }
+    
+            }  else {
+                $(".project").each(function() {
+                    var $project = $(this);
+                    var $title = $project.find(".project-title p");
+                    var originalText = $title.text();
+                    var hoverTimeout;
+                    var spaceWidth = 100; // Larghezza dello spazio in pixel
+                    var numOfCopies = 10; // numero fisso di duplicati
+                
+                    var setCorrectText = function() {
+                        // Genera lo spazio utilizzando un elemento <span>
+                        var space = $('<span class="space">').css('width', spaceWidth + 'px');
+                
+                        // Duplica il testo il numero desiderato di volte con lo spazio tra le repliche
+                        var newText = "";
+                        for (var i = 0; i < numOfCopies; i++) {
+                            newText += originalText + space[0].outerHTML;
+                        }
+                        $title.html(newText);
+                        
+                        return {
+                            single: $title.width() / numOfCopies,
+                            total: $title.width()
+                        };
+                    };
+                
+                    var startAnimation = function(widths) {
+                        // Animiamo solo sulla larghezza del testo originale più lo spazio
+                        var animationDuration = 7500;
+                        $title.stop().animate({ "margin-left": (-2 * (widths.single) + spaceWidth) }, animationDuration, "linear", function() {
+                            $title.css("margin-left", 0);
+                            startAnimation(widths);
+                        });
+                    };
+                
+                    $project.hover(
+                        function() { // Mouse enter
+                            var widths = setCorrectText();
+                            hoverTimeout = setTimeout(() => startAnimation(widths), 500);
+                        },
+                        function() { // Mouse leave
+                            clearTimeout(hoverTimeout);
+                            $title.stop().css("margin-left", 0).text(originalText);
+                        }
+                    );
+                });
+            }
+        });
+    }, 100);
     
 });
