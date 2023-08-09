@@ -2,11 +2,13 @@ $(document).ready(function() {
 
     let isMobile = $(window).width() < 768;
 
-    // Aggiungi un event listener per il resize della finestra, così da aggiornare il valore di isMobile
+    // Event listener per il resize della finestra, così da aggiornare il valore di isMobile
     $(window).on('resize', function() {
         isMobile = $(window).width() < 768;
     });
 
+
+    // Gestione menu in alto a destra
     $('.menu-toggle').on('click', function() {
         let menuContainer = $('#menuContainer');
         let menuOverlay = $('.menu-overlay');
@@ -68,9 +70,10 @@ $(document).ready(function() {
     
     
 
+    // ombrettina sotto barra menu in alto
     $(window).on("scroll", function(){
         var scrollDistance = $(window).scrollTop();
-        var maxOpacity = 0.8;  // imposta l'opacità massima che desideri qui
+        var maxOpacity = 0.8;  // imposta l'opacità massima
         var activationDistance = 128;  // imposta la distanza di scroll prima che inizi la trasparenza
 
         if (scrollDistance <= activationDistance) {
@@ -83,6 +86,8 @@ $(document).ready(function() {
         }
     });
 
+
+    // Animazione scorrimento testo se troppo lungo da mobile / animazione testo desktop durante hover
     setTimeout(() => {
         $(".project-title p").each(function() {
 
@@ -164,30 +169,6 @@ $(document).ready(function() {
 
     /* COMPORTAMENTO MOBILE DELL'HOVER */
 
-    /*
-    $(window).on('scroll', function() {
-        if (isMobile) {
-            let activeElementFound = false;
-    
-            $('.project').each(function() {
-                var windowTop = $(window).scrollTop();
-                var windowHeight = $(window).height();
-                var elementTop = $(this).offset().top;
-                var elementBottom = elementTop + $(this).outerHeight();
-    
-                var startEffect = windowTop + windowHeight * 0.10;
-                var endEffect = windowTop + windowHeight * 0.50;
-    
-                if (elementTop >= windowTop + startEffect && elementBottom <= windowTop + endEffect && !activeElementFound) {
-                    $(this).addClass('mobile-effect');
-                    activeElementFound = true;
-                } else {
-                    $(this).removeClass('mobile-effect');
-                }
-            });
-        }
-    });
-    */
     $(window).on('scroll', function() {
         if (isMobile) {
             let noEffectElement = $('.project:not(.mobile-effect)'); // l'elemento attuale senza l'effetto

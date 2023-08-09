@@ -15,6 +15,11 @@ a {
     text-decoration: none;
 }
 
+a, a:visited, a:hover, a:active, a:focus {
+    text-decoration: none;
+    color: inherit;
+}
+
 /* Definizione Variabili per Temi e Colore di Accento */
 :root {
     /* Tema Chiaro */
@@ -63,7 +68,7 @@ strong {
     bottom: 0;
     left: 0;
     z-index: -1; 
-    background: url('/res/img/bg-noise.png'), radial-gradient(at bottom left, #242424, #111111);
+    background: url('/res/img/bg-noise.png'), radial-gradient(at bottom left, #2c2c2c, #000000);
     background-size: repeat;
     background-blend-mode: overlay;
     opacity: .5;
@@ -127,10 +132,14 @@ strong {
 
 .col {
     padding: 0px 0px;
-    /* ... [altri stili per il contenuto] ... */
 }
 
+@media only screen and (max-width: 768px) {
 /* Usato per definire la larghezza delle colonne */
+.col-s-0 {
+    display: none;
+}
+
 .col-s-1 {
     grid-column: span 1;
 }
@@ -179,6 +188,10 @@ strong {
     grid-column: span 12;
 }
 
+.content-grid.desktop {
+    display: none;
+}
+}
 
 /* MENU */
 
@@ -337,6 +350,7 @@ strong {
 
 .project-subtitle {
     padding-top: 0px;
+    text-transform: uppercase;
 }
 
 .project-subtitle, .project-details {
@@ -345,7 +359,7 @@ strong {
     line-height: 16px;
     font-size: 12px;
     padding-bottom: 8px;
-    width:75%;
+    width: 75%;
 }
 
 .project-details {
@@ -537,8 +551,26 @@ strong {
     text-decoration-color: var(--color-accent);
 }
 
+.footer-gradient {
+    position: absolute;
+    bottom: 0; /* Si posiziona alla base del contenitore, direttamente sotto il footer */
+    left: 0;
+    right: 0;
+    height: 100vh; /* 250px (altezza del footer) + 500px (altezza del gradiente) */
+    background: linear-gradient(to top, var(--color-accent-strong),transparent); /* Da nero opaco a trasparente */
+    z-index: -1; /* Si assicura che stia sotto gli altri elementi, compreso il footer */
+    opacity: .1;
+}
+
 .footer {
     height: 250px;
+    font-size: 12px;
+    padding: 0px 0px;
+    display: flex;
+    align-items: center; /* Ho cambiato 'end' in 'flex-end' per renderlo compatibile con le specifiche CSS */
+    position: relative; /* Questo assicura che il gradiente stia proprio sotto il footer */
+    z-index: 1; /* Mantiene il footer sopra il gradiente */
+    text-align: center;
 }
 
 /* ************************************************************ */
@@ -716,7 +748,8 @@ strong {
         padding-left: 0%;
         transition: all 0.3s ease; /* Transizioni per font-size e right */
         line-height: 24px;
-        font-size: 16px;
+        font-size: 12px;
+
     }
 
     .project-details {
@@ -824,6 +857,10 @@ strong {
         background: linear-gradient(to bottom, rgba(0, 0, 0, 5), rgba(0, 0, 0, 0.25));
         mix-blend-mode: multiply;
         opacity: .85;
+    }
+
+    .content-grid.mobile {
+        display: none;
     }
     
 }
