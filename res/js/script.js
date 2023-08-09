@@ -190,10 +190,10 @@ $(document).ready(function() {
     */
     $(window).on('scroll', function() {
         if (isMobile) {
-            let currentEffectElement = $('.project.mobile-effect'); // l'elemento attuale con l'effetto
+            let noEffectElement = $('.project:not(.mobile-effect)'); // l'elemento attuale senza l'effetto
     
-            // Se non esiste alcun elemento con l'effetto applicato
-            if (currentEffectElement.length === 0) {
+            // Se non esiste alcun elemento senza l'effetto
+            if (noEffectElement.length === 0) {
                 $('.project').each(function() {
                     var windowTop = $(window).scrollTop();
                     var windowHeight = $(window).height();
@@ -202,29 +202,29 @@ $(document).ready(function() {
     
                     // Se l'elemento corrente soddisfa le condizioni
                     if (elementTop >= windowTop && elementBottom <= (windowTop + windowHeight)) {
-                        $(this).addClass('mobile-effect');
+                        $(this).removeClass('mobile-effect');
                         return false; // interrompe il ciclo
                     }
                 });
             } 
-            // Se esiste un elemento con l'effetto applicato
+            // Se esiste un elemento senza l'effetto
             else {
                 var windowTop = $(window).scrollTop();
                 var windowHeight = $(window).height();
-                var effectElementTop = currentEffectElement.offset().top;
-                var effectElementBottom = effectElementTop + currentEffectElement.outerHeight();
+                var noEffectElementTop = noEffectElement.offset().top;
+                var noEffectElementBottom = noEffectElementTop + noEffectElement.outerHeight();
     
-                // Se l'elemento attuale con l'effetto non soddisfa più le condizioni
-                if (effectElementTop < windowTop || effectElementBottom > (windowTop + windowHeight)) {
-                    currentEffectElement.removeClass('mobile-effect');
+                // Se l'elemento attuale senza l'effetto non soddisfa più le condizioni
+                if (noEffectElementTop < windowTop || noEffectElementBottom > (windowTop + windowHeight)) {
+                    noEffectElement.addClass('mobile-effect');
     
-                    // Ciclo per trovare un altro elemento a cui applicare l'effetto
+                    // Ciclo per trovare un altro elemento da cui rimuovere l'effetto
                     $('.project').each(function() {
                         var elementTop = $(this).offset().top;
                         var elementBottom = elementTop + $(this).outerHeight();
     
                         if (elementTop >= windowTop && elementBottom <= (windowTop + windowHeight)) {
-                            $(this).addClass('mobile-effect');
+                            $(this).removeClass('mobile-effect');
                             return false; // interrompe il ciclo
                         }
                     });
