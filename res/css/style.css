@@ -325,7 +325,7 @@ strong {
     font-size: 32px;
     font-weight: 700;
     padding-top: 16px;
-    z-index: 1000;
+    z-index: 10;
     
 }
 
@@ -732,7 +732,7 @@ strong {
     
     /* Effetti di hover */
     .project:hover .project-title {
-        font-size: 64px; /* Rende il testo più grande */
+         font-size: 64px; /* Rende il testo più grande */
         position: relative; /* Posizionamento relativo per sovrapporsi all'immagine */
         padding-left: 12.5%; /* Fa uscire il testo dal suo contenitore */
         z-index: 10; /* Sovrapponi al resto del contenuto */
@@ -767,7 +767,7 @@ strong {
         width: 100%;
         height: 128px; /* puoi modificare l'altezza come desideri */
         background: linear-gradient(to bottom, var(--color-accent-strong), rgba(0, 0, 0, 0));
-        z-index: 499; /* Così appare sotto la top-bar */
+        z-index: 4999; /* Così appare sotto la top-bar */
         opacity: 0; /* inizialmente trasparente */
     }
    
