@@ -2,6 +2,10 @@ $(document).ready(function() {
 
     let isMobile = $(window).width() < 768;
 
+    // Aggiungi un event listener per il resize della finestra, così da aggiornare il valore di isMobile
+    $(window).on('resize', function() {
+        isMobile = $(window).width() < 768;
+    });
 
     $('.menu-toggle').on('click', function() {
         let menuContainer = $('#menuContainer');
@@ -156,5 +160,77 @@ $(document).ready(function() {
             }
         });
     }, 100);
+
+
+    /* COMPORTAMENTO MOBILE DELL'HOVER */
+
+    /*
+    $(window).on('scroll', function() {
+        if (isMobile) {
+            let activeElementFound = false;
+    
+            $('.project').each(function() {
+                var windowTop = $(window).scrollTop();
+                var windowHeight = $(window).height();
+                var elementTop = $(this).offset().top;
+                var elementBottom = elementTop + $(this).outerHeight();
+    
+                var startEffect = windowTop + windowHeight * 0.10;
+                var endEffect = windowTop + windowHeight * 0.50;
+    
+                if (elementTop >= windowTop + startEffect && elementBottom <= windowTop + endEffect && !activeElementFound) {
+                    $(this).addClass('mobile-effect');
+                    activeElementFound = true;
+                } else {
+                    $(this).removeClass('mobile-effect');
+                }
+            });
+        }
+    });
+    */
+    $(window).on('scroll', function() {
+        if (isMobile) {
+            let currentEffectElement = $('.project.mobile-effect'); // l'elemento attuale con l'effetto
+    
+            // Se non esiste alcun elemento con l'effetto applicato
+            if (currentEffectElement.length === 0) {
+                $('.project').each(function() {
+                    var windowTop = $(window).scrollTop();
+                    var windowHeight = $(window).height();
+                    var elementTop = $(this).offset().top;
+                    var elementBottom = elementTop + $(this).outerHeight();
+    
+                    // Se l'elemento corrente soddisfa le condizioni
+                    if (elementTop >= windowTop && elementBottom <= (windowTop + windowHeight)) {
+                        $(this).addClass('mobile-effect');
+                        return false; // interrompe il ciclo
+                    }
+                });
+            } 
+            // Se esiste un elemento con l'effetto applicato
+            else {
+                var windowTop = $(window).scrollTop();
+                var windowHeight = $(window).height();
+                var effectElementTop = currentEffectElement.offset().top;
+                var effectElementBottom = effectElementTop + currentEffectElement.outerHeight();
+    
+                // Se l'elemento attuale con l'effetto non soddisfa più le condizioni
+                if (effectElementTop < windowTop || effectElementBottom > (windowTop + windowHeight)) {
+                    currentEffectElement.removeClass('mobile-effect');
+    
+                    // Ciclo per trovare un altro elemento a cui applicare l'effetto
+                    $('.project').each(function() {
+                        var elementTop = $(this).offset().top;
+                        var elementBottom = elementTop + $(this).outerHeight();
+    
+                        if (elementTop >= windowTop && elementBottom <= (windowTop + windowHeight)) {
+                            $(this).addClass('mobile-effect');
+                            return false; // interrompe il ciclo
+                        }
+                    });
+                }
+            }
+        }
+    });
     
 });

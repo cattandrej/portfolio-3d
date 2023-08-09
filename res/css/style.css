@@ -396,30 +396,37 @@ strong {
     object-position: center;
 }
 
-/* Effetti di hover */
-.project:hover .project-title {
-    position: relative; /* Posizionamento relativo per sovrapporsi all'immagine */
-    padding-left: 12.5%; /* Fa uscire il testo dal suo contenitore */
-    z-index: 10; /* Sovrapponi al resto del contenuto */
-    color: var(--color-accent)
+/* Stili per Mobile (basati sullo scroll) */
+.project.mobile-effect .project-title {
+
+    position: relative;
+    padding-left: 12.5%;
+    z-index: 10;
+    color: var(--color-accent);
 }
 
-.project:hover .project-subtitle, .project:hover .project-details {
-    position: relative; /* Posizionamento relativo per sovrapporsi all'immagine */
+.project.mobile-effect .project-subtitle, 
+.project.mobile-effect .project-details {
+    position: relative;
     transform: translateX(12.5%);
 }
 
-.project:hover .project-details {
-    transform: translateX(0%);
+.project.mobile-effect .project-details {
+    transform: translateX(50%);
     opacity: 100%;
 }
 
-.project:hover .project-image {
+.project.mobile-effect .project-image {
     transform: translateX(12.5%);
     filter: drop-shadow(0 0 32px rgba(0, 0, 0, .25));
     border: solid 1px var(--color-accent);
 }
 
+.project.mobile-effect .img-overlay {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.25));
+    mix-blend-mode: multiply;
+    opacity: .85;
+}
 
 
 .top-bar {
