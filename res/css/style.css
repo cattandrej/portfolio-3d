@@ -429,35 +429,38 @@ strong {
 }
 
 /* Stili per Mobile (basati sullo scroll) */
-.project.mobile-effect .project-title {
-    position: relative;
-    padding-left: 12.5%;
-    z-index: 10;
-    color: white;
-}
+@media only screen and (max-width: 768px) {
+    .project.mobile-effect .project-title {
+        position: relative;
+        padding-left: 12.5%;
+        z-index: 10;
+        color: white;
+    }
+    
+    .project.mobile-effect .project-subtitle, 
+    .project.mobile-effect .project-details {
+        position: relative;
+        transform: translateX(12.5%);
+    }
+    
+    .project.mobile-effect .project-details {
+        transform: translateX(50%);
+        opacity: 100%;
+    }
+    
+    .project.mobile-effect .project-image {
+        transform: translateX(12.5%);
+        filter: drop-shadow(0 0 32px rgba(0, 0, 0, .25));
+        border: solid 1px rgba(0, 0, 0, 0);
+    }
+    
+    .project.mobile-effect .img-overlay {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.25));
+        mix-blend-mode: multiply;
+        opacity: .85;
+    }}
 
-.project.mobile-effect .project-subtitle, 
-.project.mobile-effect .project-details {
-    position: relative;
-    transform: translateX(12.5%);
-}
 
-.project.mobile-effect .project-details {
-    transform: translateX(50%);
-    opacity: 100%;
-}
-
-.project.mobile-effect .project-image {
-    transform: translateX(12.5%);
-    filter: drop-shadow(0 0 32px rgba(0, 0, 0, .25));
-    border: solid 1px rgba(0, 0, 0, 0);
-}
-
-.project.mobile-effect .img-overlay {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.25));
-    mix-blend-mode: multiply;
-    opacity: .85;
-}
 
 
 .top-bar {
@@ -697,6 +700,11 @@ strong {
         font-size: 32px;
         font-weight: 700;
         padding-top: 0px;
+        color: white;
+    }
+
+    .project .project-title {
+        color: white;
     }
 
     .project-subtitle {
@@ -750,6 +758,12 @@ strong {
         display: block;
         padding-top: 56.25%; /* 16:9 Aspect Ratio */
     }
+
+    
+    .project .project-image {
+        border: none;
+    }
+
     
     .project-image img {
         position: absolute;
