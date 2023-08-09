@@ -7,6 +7,10 @@ html, body, div, h1, h2, h3, h4, h5, h6, p, ol, ul, li, dl, dt, dd, img, form, f
     box-sizing: border-box;
 }
 
+body {
+    min-height: 100vh;
+}
+
 ol, ul {
     list-style: none;
 }
@@ -348,12 +352,12 @@ strong {
     z-index: 100;
 }
 
-.project-subtitle {
+.portfolio-project-subtitle {
     padding-top: 0px;
     text-transform: uppercase;
 }
 
-.project-subtitle, .project-details {
+.portfolio-project-subtitle, .project-details {
     padding-left: 0%;
     transition: all 0.3s ease; /* Transizioni per font-size e right */
     line-height: 16px;
@@ -386,7 +390,7 @@ strong {
     background-size: contain; /* Questo farà in modo che l'SVG si adatti alle dimensioni del contenitore */
     margin-left: 8px; /* Distanza dalla parola "more." */
 }
-.project-image {
+.portfolio-project-image {
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -395,13 +399,13 @@ strong {
     border: solid 1px rgba(0, 0, 0, 0);
 }
 
-.project-image::before {
+.portfolio-project-image::before {
     content: ""; 
     display: block;
     padding-top: 56.25%; /* 16:9 Aspect Ratio */
 }
 
-.project-image img {
+.portfolio-project-image img {
     position: absolute;
     top: 0;
     left: 0;
@@ -419,7 +423,7 @@ strong {
     color: var(--color-accent);
 }
 
-.project .project-subtitle, 
+.project .portfolio-project-subtitle, 
 .project .project-details {
     position: relative;
     transform: translateX(0%);
@@ -430,7 +434,7 @@ strong {
 }
 
 
-.project .project-image {
+.project .portfolio-project-image {
     transform: translateX(0%);
     filter: drop-shadow(0 0 32px rgba(0, 0, 0, .25));
     border: solid 1px var(--color-accent);
@@ -444,31 +448,31 @@ strong {
 
 /* Stili per Mobile (basati sullo scroll) */
 @media only screen and (max-width: 768px) {
-    .project.mobile-effect .project-title {
+    .project.mobile-inactive .project-title {
         position: relative;
         padding-left: 12.5%;
         z-index: 10;
         color: white;
     }
     
-    .project.mobile-effect .project-subtitle, 
-    .project.mobile-effect .project-details {
+    .project.mobile-inactive .portfolio-project-subtitle, 
+    .project.mobile-inactive .project-details {
         position: relative;
         transform: translateX(12.5%);
     }
     
-    .project.mobile-effect .project-details {
+    .project.mobile-inactive .project-details {
         transform: translateX(50%);
         opacity: 100%;
     }
     
-    .project.mobile-effect .project-image {
+    .project.mobile-inactive .portfolio-project-image {
         transform: translateX(12.5%);
         filter: drop-shadow(0 0 32px rgba(0, 0, 0, .25));
         border: solid 1px rgba(0, 0, 0, 0);
     }
     
-    .project.mobile-effect .img-overlay {
+    .project.mobile-inactive .img-overlay {
         background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.25));
         mix-blend-mode: multiply;
         opacity: .85;
@@ -559,7 +563,7 @@ strong {
     height: 100vh; /* 250px (altezza del footer) + 500px (altezza del gradiente) */
     background: linear-gradient(to top, var(--color-accent-strong),transparent); /* Da nero opaco a trasparente */
     z-index: -1; /* Si assicura che stia sotto gli altri elementi, compreso il footer */
-    opacity: .1;
+    opacity: .25;
 }
 
 .footer {
@@ -739,12 +743,12 @@ strong {
         color: white;
     }
 
-    .project-subtitle {
+    .portfolio-project-subtitle {
         padding-top: 16px;
         width: 100%;
     }
 
-    .project-subtitle, .project-details {
+    .portfolio-project-subtitle, .project-details {
         padding-left: 0%;
         transition: all 0.3s ease; /* Transizioni per font-size e right */
         line-height: 24px;
@@ -777,7 +781,7 @@ strong {
         background-size: contain; /* Questo farà in modo che l'SVG si adatti alle dimensioni del contenitore */
         margin-left: 8px; /* Distanza dalla parola "more." */
     }
-    .project-image {
+    .portfolio-project-image {
         width: 50%;
         position: relative;
         overflow: hidden;
@@ -786,19 +790,19 @@ strong {
         border: none;
     }
 
-    .project-image::before {
+    .portfolio-project-image::before {
         content: ""; 
         display: block;
         padding-top: 56.25%; /* 16:9 Aspect Ratio */
     }
 
     
-    .project .project-image {
+    .project .portfolio-project-image {
         border: none;
     }
 
     
-    .project-image img {
+    .portfolio-project-image img {
         position: absolute;
         top: 0;
         left: 0;
@@ -817,7 +821,7 @@ strong {
         color: var(--color-accent)
     }
 
-    .project:hover .project-subtitle, .project:hover .project-details {
+    .project:hover .portfolio-project-subtitle, .project:hover .project-details {
         position: relative; /* Posizionamento relativo per sovrapporsi all'immagine */
         transform: translateX(12.5%);
     }
@@ -827,7 +831,7 @@ strong {
         opacity: 100%;
     }
 
-    .project:hover .project-image {
+    .project:hover .portfolio-project-image {
         transform: translateX(12.5%);
         filter: drop-shadow(0 0 32px rgba(0, 0, 0, .25));
         border: none;

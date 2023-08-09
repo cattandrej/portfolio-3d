@@ -1,0 +1,153 @@
+
+.photogallery {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    top: 0px;
+    z-index: 99999;
+    backdrop-filter: blur(10px);
+}
+
+.photogallery-controls {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+
+.photogallery-photo-frame {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    height: 90%;
+}
+
+.photogallery-back-arrow, .photogallery-next-arrow {
+    width: 100px;
+    height: 25%;
+    cursor: pointer;
+}
+
+.photogallery-img {
+    margin: 0px 50px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.photogallery-hidden {
+    display: none;
+}
+
+.spacing {
+    height: 33%;
+}
+
+.arrow {
+    border: solid rgb(96, 96, 96);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 10px;
+    margin: 25px;
+}
+
+.arrow:hover {
+    border-color: white;
+}
+
+.photogallery-back-arrow:hover .arrow, .photogallery-next-arrow:hover .arrow {
+    border-color: white;
+}
+
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+.photogallery-topbar {
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    width: 100%;
+    top: 0;  /* Aggiunto per assicurarsi che sia ancorato in alto */
+    left: 0; /* Aggiunto per assicurarsi che sia ancorato a sinistra */
+    z-index: 1000; /* Aggiunto per assicurarsi che appaia sopra gli altri elementi, ma puoi regolare questo valore come necessario */
+}
+
+.photogallery-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 64px;
+    height: 64px;
+    cursor: pointer;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.photogallery-close:after, .photogallery-close:before {
+    content: '';
+    position: absolute; /* Torniamo al posizionamento assoluto */
+    width: 3px;
+    height: 32px;
+    background-color: rgb(96, 96, 96);
+    transform-origin: 50% 50%; /* Questo assicura che la rotazione avvenga attorno al centro */
+}
+
+.photogallery-close:after {
+    transform: rotate(45deg);
+}
+
+.photogallery-close:before {
+    transform: rotate(-45deg);
+}
+
+.photogallery-close:hover:after, .photogallery-close:hover:before {
+    background-color: white;
+}
+
+
+img {
+    cursor: pointer;
+    display: block;
+}
+
+.gallery-video {
+    display: block;
+    border: none;
+    background-color: #fcfbff;
+}
+
+.photogallery-img {
+    cursor: auto;
+}
+
+.highlight {
+    font-size: 1.5rem;
+    font-weight: 300;
+    padding-bottom: 25px;
+}
+
+.project-description {
+    padding-left: 5%;
+}
+
+.photogallery-line {
+    display: flex;
+    position: fixed;
+    height: 3px;
+    background-color: rgba(196, 196, 196, .25);
+    bottom: 0px;
+    transition: width ease .25s;
+    min-width: 0px !important;
+    margin: 12px;
+    border-right: 6px solid rgba(255, 255, 255, .33);
+}
