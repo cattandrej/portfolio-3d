@@ -500,6 +500,7 @@ strong {
 
 .menu-current-page {
     text-decoration: underline;
+    text-decoration-color: var(--color-accent);
 }
 
 .footer {
