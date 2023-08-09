@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrej Cattaneo | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <link rel="stylesheet" href="../../../res/css/style.css">
+    <link rel="stylesheet" href="../../../res/css/project-style.css">
+    <link rel="stylesheet" href="../../../res/css/photogallery.css">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="../../../res/js/minimal-script.js" defer></script>
+    <script src="https://player.vimeo.com/api/player.js" defer></script>
+    <script src="../../../res/js/photogallery.js" defer></script>
+</head>
+
+<body data-theme="dark">
+
+    <div class="photogallery photogallery-hidden">
+        <div class="photogallery-topbar">
+            <div class="photogallery-close" onclick="closeGallery()"></div>
+        </div>
+        <div class="photogallery-controls">
+            <div class="photogallery-back-arrow" onclick="prevImg()">
+                <div class="spacing"></div>
+                <div class="arrow left"></div>
+            </div>
+            <div class="photogallery-photo-frame">
+                <img class="photogallery-img" onclick="nextImg()">
+            </div>
+            <div class="photogallery-next-arrow" onclick="nextImg()">
+
+                <div class="spacing"></div>
+                <div class="arrow right"></div>
+
+            </div>
+        </div>
+        <div class="photogallery-line">
+
+        </div>
+    </div>
+
+    <div class="background-layer"></div> <!-- Sfondo gradiente con noise -->
+
+    <div class="column-background">
+        <!-- Questi div non avranno contenuti visibili ma servono per generare le linee verticali -->
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    
+    <div class="content-container">
+        
+        <div class="content-grid top-bar">
+            <div class="col col-s-1 col-m-2"></div>
+            <div class="col col-s-5 col-m-4 logo">
+                <a href="../../index.html">
+                    <p>ANDREJ CATTANEO — <strong>Portfolio.</strong></p>
+                </a>
+            </div>
+            <div class="col col-s-5 col-m-4 logo-mobile">
+                <a href="../../index.html">
+                    <p>Andrej Cattaneo</p>
+                </a>
+            </div>
+            <div class="col col-s-5 col-m-4 menu-container">
+                <!-- Menu -->
+                <div class="menu-overlay hide"></div>
+                <div id="menuContainer">
+                    <div class="menu-toggle">
+                        <span id="menuLabel">MENU</span>
+                        <span id="closeLabel">×</span>
+                    </div>
+                    <div id="menuListContainer" class="hide">
+                        <ul class="menu-list">
+                            <li><a href="../about/index.html">About</a></li>
+                            <li><a href="../../index.html">Works</a></li>
+                            <li><a href="../resume/index.html">Resume</a></li>
+                            <li><a href="../contact/index.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-s-1 col-m-2"></div>
+        </div>
+        
+
+        <div class="shadow-top-bar"></div>
+
+        <!-- Qui puoi iniziare ad aggiungere il tuo contenuto. Questi contenuti saranno sopra le linee verticali e lo sfondo gradient. -->
+        
+        <div class="content-grid projects">
+
+            <div class="col col-m-12 col-s-12 menu-container">
+
+            </div>
+
+            <div class="col col-m-12 col-s-12 section-title project-page-title">
+                <div>
+                    <p>La CVLLA.</p>
+                </div>
+            </div>
+
+            <div class="col col-m-12 col-s-12 project">
+                <div class="portfolio-project-subtitle project-subtitle">
+                    <p>
+                        Modeling · Texturing · Lighting · Animation · Rendering
+                    </p>
+                </div>
+        </div>
+
+        <div class="col col-m-3 col-s-0 project-text">
+
+        </div>
+        <div class="col col-m-6 col-s-12 project-text">
+            <p>
+                For a theatrical performance, I crafted a 3D animated sequence using Blender, designed as the introduction for a TV show titled "La CVLLA". This animation was showcased as part of the show. I took charge of every aspect, from modeling and material selection to exporting and editing.            </p>
+        </div>
+        <div class="col col-m-3 col-s-0 project-text">
+
+        </div>
+
+            <!-- PROJECT -->
+
+            <div class="col col-m-12 col-s-12 project">
+                <div class="video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/853138309?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="LA CVLLA - Intro lunga - 40 sec"></iframe>
+                </div>
+            </div>
+            <div class="col col-m-6 col-s-12 project">
+                <div class="project-image">
+                    <img src="../../../res/img/la-cvlla/la_cvlla_04.jpg">
+                </div>
+            </div>
+            <div class="col col-m-6 col-s-12 project">
+                <div class="project-image">
+                    <img src="../../../res/img/la-cvlla/la_cvlla_03.jpg">
+                </div>
+            </div>
+
+            <div class="col col-m-6 col-s-12 project">
+                <div class="video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/853142836?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&title=0&byline=0&portrait=0&loop=1&autoplay=1&muted=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="LA CULLA - Short intro"></iframe>
+                </div>
+            </div>
+            <div class="col col-m-6 col-s-12 project">
+                <div class="video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/853145190?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&title=0&byline=0&portrait=0&loop=1&autoplay=1&muted=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="LA CVLLA 2 - Teaser"></iframe>
+                </div>
+            </div>
+
+
+             
+
+             <div class="col col-m-12 col-s-12 footer">
+                <div class="content-grid desktop">
+                    <div class="col col-m-3 col-s-0">
+                        <div>
+
+                        </div>
+                    </div>
+                    <div class="col col-m-2 col-s-6">
+                        <div style="text-align: left;">
+                            <a href="../../index.html">
+                                <p>Andrej Cattaneo</p>
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-m-2 col-s-6">
+                        <div>
+                            <a href="mailto:cattandrej93@gmail.com"><p>cattandrej93@gmail.com</p></a>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-m-2 col-s-12">
+                        <div style="text-align: right;">
+                            <a href="https://www.linkedin.com/in/andrej-cattaneo-a63191183/" target="_blank"><p>LinkedIn</p></a>
+                        </div>
+                    </div>
+
+                    <div class="col col-m-12">
+                        <div>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="col col-m-12">
+                        <p>© 2023 ❤</p>
+                    </div>
+                </div>
+                <!-- MOBILE -->
+                <div class="content-grid mobile">
+                    <div class="col col-s-12">
+                        <div>
+                            <a href="../../index.html">
+                                <p>Andrej Cattaneo</p>
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-s-12">
+                        <div>
+                            <a href="mailto:cattandrej93@gmail.com"><p>Mail</p></a>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-s-12">
+                        <div>
+                            <a href="https://www.linkedin.com/in/andrej-cattaneo-a63191183/" target="_blank"><p>LinkedIn</p></a>
+                        </div>
+                    </div>
+
+                    <div class="col col-s-12">
+                        <div>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="col col-s-12">
+                        <p>© 2023 ❤</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="footer-gradient"></div>
+    
+    </div>
+
+</body>
+
+</html>
