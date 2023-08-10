@@ -6,84 +6,66 @@ $(document).ready(function() {
         isMobile = $(window).width() < 768;
     });
 
-    // Animazione scorrimento testo se troppo lungo da mobile / animazione testo desktop durante hover
-    setTimeout(() => {
-        $(".project-title p").each(function() {
-
-            if (isMobile) {
+    function animateMobileText($element) {
+        var parentWidth = $element.parent().width();
+        var textWidth = $element.width();
+        var spaceWidth = 50; // Larghezza dello spazio in pixel
     
-                var $this = $(this);
-                var parentWidth = $this.parent().width();
-                var textWidth = $this.width();
-                var spaceWidth = 50; // Larghezza dello spazio in pixel
-                
-                if (textWidth > parentWidth) {
-                    // Genera lo spazio utilizzando un elemento <span>
-                    var space = $('<span class="space">').css('width', spaceWidth + 'px');
-                    
-                    // Duplica il testo e aggiungi lo spazio tra le repliche
-                    $this.html($this.text() + space[0].outerHTML + $this.text());
+        if (textWidth > parentWidth) {
+            var space = $('<span class="space">').css('width', spaceWidth + 'px');
+            $element.html($element.text() + space[0].outerHTML + $element.text());
     
-                    function scrollText() {
-                        // Scorrimento del testo fino alla metà della sua lunghezza complessiva
-                        $this.animate({ "margin-left": -(textWidth + spaceWidth) }, 15000, "linear", function() {
-                            $this.css("margin-left", 0); // Resetta la posizione senza soluzione di continuità
-                            scrollText(); // Ricomincia l'animazione
-                        });
-                    }
+            $element.addClass('animating');
+        }
+    }
     
-                    scrollText();
-                }
+    function animateDesktopText($project) {
+        var $title = $project.find(".project-title p");
+        var originalText = $title.text();
+        var spaceWidth = 100; // Larghezza dello spazio in pixel
+        var numOfCopies = 10; // numero fisso di duplicati
     
-            }  else {
-                $(".project").each(function() {
-                    var $project = $(this);
-                    var $title = $project.find(".project-title p");
-                    var originalText = $title.text();
-                    var hoverTimeout;
-                    var spaceWidth = 100; // Larghezza dello spazio in pixel
-                    var numOfCopies = 10; // numero fisso di duplicati
-                
-                    var setCorrectText = function() {
-                        // Genera lo spazio utilizzando un elemento <span>
-                        var space = $('<span class="space">').css('width', spaceWidth + 'px');
-                
-                        // Duplica il testo il numero desiderato di volte con lo spazio tra le repliche
-                        var newText = "";
-                        for (var i = 0; i < numOfCopies; i++) {
-                            newText += originalText + space[0].outerHTML;
-                        }
-                        $title.html(newText);
-                        
-                        return {
-                            single: $title.width() / numOfCopies,
-                            total: $title.width()
-                        };
-                    };
-                
-                    var startAnimation = function(widths) {
-                        // Animiamo solo sulla larghezza del testo originale più lo spazio
-                        var animationDuration = 7500;
-                        $title.stop().animate({ "margin-left": (-2 * (widths.single) + spaceWidth) }, animationDuration, "linear", function() {
-                            $title.css("margin-left", 0);
-                            startAnimation(widths);
-                        });
-                    };
-                
-                    $project.hover(
-                        function() { // Mouse enter
-                            var widths = setCorrectText();
-                            hoverTimeout = setTimeout(() => startAnimation(widths), 500);
-                        },
-                        function() { // Mouse leave
-                            clearTimeout(hoverTimeout);
-                            $title.stop().css("margin-left", 0).text(originalText);
-                        }
-                    );
-                });
+        var setCorrectText = function() {
+            var space = $('<span class="space">').css('width', spaceWidth + 'px');
+            var newText = "";
+            for (var i = 0; i < numOfCopies; i++) {
+                newText += originalText + space[0].outerHTML;
             }
+            $title.html(newText);
+        };
+    
+        $project.hover(
+            function() { // Mouse enter
+                setCorrectText();
+                $title.addClass('animating');
+            },
+            function() { // Mouse leave
+                $title.removeClass('animating').css('margin-left', 0).text(originalText);
+            }
+        );
+    }
+    
+    if (isMobile) {
+        $(".project-title p").each(function() {
+            animateMobileText($(this));
         });
-    }, 100);
+    } else {
+        $(".project").each(function() {
+            animateDesktopText($(this));
+        });
+    }
+    
+    
+
+    /* reset delle animazioni al resize */
+    var resizeTimeout;
+
+    $(window).on('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            // Esegui le operazioni qui dopo che il resize è stato completato
+        }, 250); // 250 millisecondi di ritardo
+    });
 
 
     /* COMPORTAMENTO MOBILE DELL'HOVER */

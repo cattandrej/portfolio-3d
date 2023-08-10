@@ -580,6 +580,16 @@ strong {
 /* ************************************************************ */
 
 
+@keyframes slide {
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.project-title p.animating {
+    animation: slide 15s linear infinite;
+}
+
 /* Media Query per Tablet */
 @media (min-width: 768px) {
     /* Adatta o estende gli stili per tablet ... */
