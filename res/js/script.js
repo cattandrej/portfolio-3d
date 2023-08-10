@@ -2,6 +2,10 @@ $(document).ready(function() {
 
     let isMobile = $(window).width() < 768;
 
+    $(window).on('resize', function() {
+        isMobile = $(window).width() < 768;
+    });
+
     // Animazione scorrimento testo se troppo lungo da mobile / animazione testo desktop durante hover
     setTimeout(() => {
         $(".project-title p").each(function() {
