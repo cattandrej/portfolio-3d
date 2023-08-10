@@ -531,7 +531,7 @@ strong {
 
     .project.mobile-inactive .portfolio-project-image {
         filter: drop-shadow(0 0 32px rgba(0, 0, 0, .25));
-        border: solid 1px rgba(0, 0, 0, 0);
+        border: solid 1px transparent;
     }
 
     .project.mobile-inactive .project-title,
@@ -541,17 +541,8 @@ strong {
     }
 
     .project.mobile-inactive .project-title {
-        position: relative;
 
-        z-index: 10;
         color: white;
-    }
-
-    .project.mobile-inactive .project-details {
-        position: relative;
-        transform: translateX(50%);
-        opacity: 1;
-        /* Opacity should be between 0 and 1 */
     }
 
 }
