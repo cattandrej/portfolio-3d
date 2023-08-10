@@ -479,6 +479,9 @@ strong {
     }
 }
 
+.project {
+    will-change: transform;
+}
 
 
 
