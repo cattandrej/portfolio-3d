@@ -586,8 +586,11 @@ strong {
     }
 }
 
+
 .project-title p.animating {
     animation: slide 15s linear infinite;
+    transform: translate3d(0,0,0);
+    will-change: transform;
 }
 
 /* Media Query per Tablet */
