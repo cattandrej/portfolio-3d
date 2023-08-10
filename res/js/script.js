@@ -7,13 +7,6 @@ $(document).ready(function () {
     });
 
 
-    // Funzione per far scorrere il testo su mobile
-    function scrollText($this, textWidth, spaceWidth) {
-        $this.animate({ "margin-left": -(textWidth + spaceWidth) }, 15000, "linear", function () {
-            $this.css("margin-left", 0);
-            scrollText($this, textWidth, spaceWidth); // Ricomincia l'animazione
-        });
-    }
 
     // Funzione per impostare il testo corretto su desktop
     function setCorrectText($title, originalText, spaceWidth, numOfCopies) {
@@ -52,7 +45,9 @@ $(document).ready(function () {
                 if (textWidth > parentWidth) {
                     var space = $('<span class="space">').css('width', spaceWidth + 'px');
                     $this.html($this.text() + space[0].outerHTML + $this.text());
-                    scrollText($this, textWidth, spaceWidth);
+
+                    // Aggiungi la classe per iniziare l'animazione CSS
+                    $this.addClass('scrolling-text');
                 }
             });
         } else {

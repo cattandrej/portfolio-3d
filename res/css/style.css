@@ -1,5 +1,26 @@
 /* Reset di Base */
-html, body, div, h1, h2, h3, h4, h5, h6, p, ol, ul, li, dl, dt, dd, img, form, fieldset, input, textarea, blockquote {
+html,
+body,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+img,
+form,
+fieldset,
+input,
+textarea,
+blockquote {
     margin: 0;
     padding: 0;
     border: 0;
@@ -11,7 +32,8 @@ body {
     min-height: 100vh;
 }
 
-ol, ul {
+ol,
+ul {
     list-style: none;
 }
 
@@ -19,7 +41,11 @@ a {
     text-decoration: none;
 }
 
-a, a:visited, a:hover, a:active, a:focus {
+a,
+a:visited,
+a:hover,
+a:active,
+a:focus {
     text-decoration: none;
     color: inherit;
 }
@@ -27,13 +53,15 @@ a, a:visited, a:hover, a:active, a:focus {
 /* Definizione Variabili per Temi e Colore di Accento */
 :root {
     /* Tema Chiaro */
-    --color-bg-light: #ffffff; /* Colore di sfondo */
-    --color-text-light: #333333; /* Colore del testo */
-    
+    --color-bg-light: #ffffff;
+    /* Colore di sfondo */
+    --color-text-light: #333333;
+    /* Colore del testo */
+
     /* Tema Scuro */
     --color-bg-dark: #1a1a1a;
     --color-text-dark: #e6e6e6;
-    
+
     /* Colore di Accento */
     --color-accent: #ff4500;
     --color-accent-strong: rgba(228, 8, 8, .5);
@@ -50,16 +78,20 @@ body {
     color: var(--color-text-light);
     font-family: 'Helvetica', Arial, sans-serif;
     line-height: 1.6;
-    position: relative; 
+    position: relative;
     font-family: 'Poppins', sans-serif;
 }
 
-h1, h2, h3 {
-    font-weight: 600; /* Questo usa Poppins Semi-Bold */
+h1,
+h2,
+h3 {
+    font-weight: 600;
+    /* Questo usa Poppins Semi-Bold */
 }
 
 strong {
-    font-weight: 700; /* Questo usa Poppins Bold */
+    font-weight: 700;
+    /* Questo usa Poppins Bold */
 }
 
 /* ... altri stili di base ... */
@@ -71,7 +103,7 @@ strong {
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: -1; 
+    z-index: -1;
     background: url('/res/img/bg-noise.png'), radial-gradient(at bottom left, #2c2c2c, #000000);
     background-size: repeat;
     background-blend-mode: overlay;
@@ -84,54 +116,62 @@ strong {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    max-width: 1400px;  /* come la max-width della griglia */
-    width: 100%;  /* Questo assicura che prenda l'intera larghezza fino al max-width */
+    max-width: 1400px;
+    /* come la max-width della griglia */
+    width: 100%;
+    /* Questo assicura che prenda l'intera larghezza fino al max-width */
     z-index: -1;
 
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
 
-.column-background > * {
+.column-background>* {
     position: relative;
 }
 
-.column-background > *::after {
+.column-background>*::after {
     content: "";
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     width: 1px;
-    background-color: rgba(255, 255, 255, 0.05);  /* Colore delle linee */
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Colore delle linee */
 }
 
-.column-background > *:first-child::before {
+.column-background>*:first-child::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     width: 1px;
-    background-color: rgba(255, 255, 255, 0.05);  /* Colore delle linee */
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Colore delle linee */
 }
 
 .content-container {
     padding: 20px 0;
     max-width: 1400px;
     margin: 0 auto;
-    z-index: 0; /* Garantisce che il contenuto sia al di sopra delle colonne/background */
-    position: relative; 
+    z-index: 0;
+    /* Garantisce che il contenuto sia al di sopra delle colonne/background */
+    position: relative;
 }
 
 
 .content-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: 1px; /* Crea il "filetto" tra le colonne */
-    max-width: 1400px; /* Imposta la larghezza massima per desktop */
-    margin: 0 auto; /* Centra il contenitore dei contenuti */
-    width: 100%; 
+    gap: 1px;
+    /* Crea il "filetto" tra le colonne */
+    max-width: 1400px;
+    /* Imposta la larghezza massima per desktop */
+    margin: 0 auto;
+    /* Centra il contenitore dei contenuti */
+    width: 100%;
 }
 
 .col {
@@ -139,62 +179,79 @@ strong {
 }
 
 @media only screen and (max-width: 768px) {
-/* Usato per definire la larghezza delle colonne */
-.col-s-0 {
-    display: none;
-}
 
-.col-s-1 {
-    grid-column: span 1;
-}
+    /* Usato per definire la larghezza delle colonne */
+    .col-s-0 {
+        display: none;
+    }
 
-.col-s-2 {
-    grid-column: span 2;
-}
+    .col-s-1 {
+        grid-column: span 1;
+    }
 
-.col-s-3 {
-    grid-column: span 3;
-}
+    .col-s-2 {
+        grid-column: span 2;
+    }
 
-.col-s-4 {
-    grid-column: span 4;
-}
+    .col-s-3 {
+        grid-column: span 3;
+    }
 
-.col-s-5 {
-    grid-column: span 5;
-}
+    .col-s-4 {
+        grid-column: span 4;
+    }
 
-.col-s-6 {
-    grid-column: span 6;
-}
+    .col-s-5 {
+        grid-column: span 5;
+    }
 
-.col-s-7 {
-    grid-column: span 7;
-}
+    .col-s-6 {
+        grid-column: span 6;
+    }
 
-.col-s-8 {
-    grid-column: span 8;
-}
+    .col-s-7 {
+        grid-column: span 7;
+    }
 
-.col-s-9 {
-    grid-column: span 9;
-}
+    .col-s-8 {
+        grid-column: span 8;
+    }
 
-.col-s-10 {
-    grid-column: span 10;
-}
+    .col-s-9 {
+        grid-column: span 9;
+    }
 
-.col-s-11 {
-    grid-column: span 11;
-}
+    .col-s-10 {
+        grid-column: span 10;
+    }
 
-.col-s-12 {
-    grid-column: span 12;
-}
+    .col-s-11 {
+        grid-column: span 11;
+    }
 
-.content-grid.desktop {
-    display: none;
-}
+    .col-s-12 {
+        grid-column: span 12;
+    }
+
+    .content-grid.desktop {
+        display: none;
+    }
+
+    .scrolling-text {
+        animation-name: scrollTextAnimation;
+        animation-duration: 7.5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+    
+    @keyframes scrollTextAnimation {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc( (-100% - 50px ) / 2)); /* 50px è lo spazio */
+        }
+    }
 }
 
 /* MENU */
@@ -260,17 +317,21 @@ strong {
     justify-content: center;
     text-align: end;
 }
+
 .menu-container {
     height: 128px;
 }
 
 .menu-list li {
-    text-align: center; /* Centra ogni voce del menu */
+    text-align: center;
+    /* Centra ogni voce del menu */
 }
 
 .menu-list {
-    font-size: 48px; /* Aumenta il font */
-    text-align: center; /* Centra il testo */
+    font-size: 48px;
+    /* Aumenta il font */
+    text-align: center;
+    /* Centra il testo */
     font-weight: 700;
 }
 
@@ -289,26 +350,30 @@ strong {
 .menu-active .menu-list a {
     opacity: 1;
     transform: translateY(10px);
-    visibility: visible; 
+    visibility: visible;
     transition: opacity .25s ease-in-out, transform .25s ease;
 
-  }
+}
 
 
 .menu-list li:nth-child(1) a {
-    transition-delay: 0s; /* nessun ritardo per il primo elemento */
+    transition-delay: 0s;
+    /* nessun ritardo per il primo elemento */
 }
 
 .menu-list li:nth-child(2) a {
-    transition-delay: 0.05s; /* 0.5s di ritardo per il secondo elemento */
+    transition-delay: 0.05s;
+    /* 0.5s di ritardo per il secondo elemento */
 }
 
 .menu-list li:nth-child(3) a {
-    transition-delay: .1s; /* 1s di ritardo per il terzo elemento */
+    transition-delay: .1s;
+    /* 1s di ritardo per il terzo elemento */
 }
 
 .menu-list li:nth-child(4) a {
-    transition-delay: .15s /* 1.5s di ritardo per il quarto elemento */
+    transition-delay: .15s
+        /* 1.5s di ritardo per il quarto elemento */
 }
 
 .section-title {
@@ -321,16 +386,20 @@ strong {
 }
 
 .project {
-    align-items: center; /* Centra verticalmente gli elementi figli */
-    transition: all 0.3s ease; /* Transizione fluida per gli effetti di hover */
-    max-width: 100%; /* Larghezza massima */
+    align-items: center;
+    /* Centra verticalmente gli elementi figli */
+    transition: all 0.3s ease;
+    /* Transizione fluida per gli effetti di hover */
+    max-width: 100%;
+    /* Larghezza massima */
     cursor: pointer;
     overflow: hidden;
     padding-bottom: 32px;
 }
 
 .project-description {
-    overflow: visible; /* Cambiato da hidden a visible */
+    overflow: visible;
+    /* Cambiato da hidden a visible */
     width: 100%;
     line-height: 48px;
     padding: 0px 20px;
@@ -338,13 +407,15 @@ strong {
 
 .project-title {
     position: relative;
-    white-space: nowrap; /* Evita che il testo vada a capo */
-    transition: all 0.3s ease; /* Transizioni per font-size e right */
+    white-space: nowrap;
+    /* Evita che il testo vada a capo */
+    transition: all 0.3s ease;
+    /* Transizioni per font-size e right */
     font-size: 32px;
     font-weight: 700;
     padding-top: 16px;
     z-index: 10;
-    
+
 }
 
 .project-title p {
@@ -357,9 +428,11 @@ strong {
     text-transform: uppercase;
 }
 
-.portfolio-project-subtitle, .project-details {
+.portfolio-project-subtitle,
+.project-details {
     padding-left: 0%;
-    transition: all 0.3s ease; /* Transizioni per font-size e right */
+    transition: all 0.3s ease;
+    /* Transizioni per font-size e right */
     line-height: 16px;
     font-size: 12px;
     padding-bottom: 8px;
@@ -376,20 +449,26 @@ strong {
 }
 
 .project-details p {
-     /* Puoi modificare questo valore in base alle tue esigenze */
-    line-height: 1.5; /* Assicura un buon allineamento verticale del testo */
+    /* Puoi modificare questo valore in base alle tue esigenze */
+    line-height: 1.5;
+    /* Assicura un buon allineamento verticale del testo */
     display: flex;
     align-items: center;
-    
+
 }
 
 .right-arrow {
-    width: 30px; /* Regola la larghezza dell'SVG */
-    height: 16px; /* Regola l'altezza dell'SVG */
+    width: 30px;
+    /* Regola la larghezza dell'SVG */
+    height: 16px;
+    /* Regola l'altezza dell'SVG */
     background: url('../img/right-arrow.svg') no-repeat center center;
-    background-size: contain; /* Questo farà in modo che l'SVG si adatti alle dimensioni del contenitore */
-    margin-left: 8px; /* Distanza dalla parola "more." */
+    background-size: contain;
+    /* Questo farà in modo che l'SVG si adatti alle dimensioni del contenitore */
+    margin-left: 8px;
+    /* Distanza dalla parola "more." */
 }
+
 .portfolio-project-image {
     width: 100%;
     position: relative;
@@ -400,9 +479,10 @@ strong {
 }
 
 .portfolio-project-image::before {
-    content: ""; 
+    content: "";
     display: block;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    padding-top: 56.25%;
+    /* 16:9 Aspect Ratio */
 }
 
 .portfolio-project-image img {
@@ -423,7 +503,7 @@ strong {
     color: var(--color-accent);
 }
 
-.project .portfolio-project-subtitle, 
+.project .portfolio-project-subtitle,
 .project .project-details {
     position: relative;
     transform: translateX(0%);
@@ -454,6 +534,26 @@ strong {
         border: solid 1px rgba(0, 0, 0, 0);
     }
 
+    .project.mobile-inactive .project-title,
+    .project.mobile-inactive .portfolio-project-subtitle,
+    .project.mobile-inactive .portfolio-project-image {
+        transform: translateX(12.5%);
+    }
+
+    .project.mobile-inactive .project-title {
+        position: relative;
+
+        z-index: 10;
+        color: white;
+    }
+
+    .project.mobile-inactive .project-details {
+        position: relative;
+        transform: translateX(50%);
+        opacity: 1;
+        /* Opacity should be between 0 and 1 */
+    }
+
 }
 
 .project {
@@ -463,14 +563,15 @@ strong {
 
 
 .project-title p.animating {
-    transform: translate3d(0,0,0);
+    transform: translate3d(0, 0, 0);
     will-change: transform;
 }
 
 
 .top-bar {
     position: fixed;
-    z-index: 5000;;
+    z-index: 5000;
+    ;
 }
 
 .shadow-top-bar {
@@ -478,10 +579,13 @@ strong {
     top: 0;
     left: 0;
     width: 100%;
-    height: 256px; /* puoi modificare l'altezza come desideri */
+    height: 256px;
+    /* puoi modificare l'altezza come desideri */
     background: linear-gradient(to bottom, var(--color-accent-strong), rgba(0, 0, 0, 0));
-    z-index: 499; /* Così appare sotto la top-bar */
-    opacity: 0; /* inizialmente trasparente */
+    z-index: 499;
+    /* Così appare sotto la top-bar */
+    opacity: 0;
+    /* inizialmente trasparente */
 }
 
 .projects {
@@ -498,9 +602,10 @@ strong {
     background:
         radial-gradient(at bottom left, var(--color-accent-strong), rgba(0, 0, 0, 0)),
         rgba(0, 0, 0, 0.6666);
-        background-size: repeat, cover; 
+    background-size: repeat, cover;
     background-blend-mode: overlay, overlay;
-    z-index: 0; /* Deve apparire sopra tutto tranne il menu */
+    z-index: 0;
+    /* Deve apparire sopra tutto tranne il menu */
     transition: all .5s ease;
 }
 
@@ -509,9 +614,9 @@ strong {
 
     backdrop-filter: blur(0px);
     background:
-        radial-gradient(at bottom left,rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+        radial-gradient(at bottom left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
         rgba(0, 0, 0, 0);
-        background-size: repeat, cover; 
+    background-size: repeat, cover;
 }
 
 .img-overlay {
@@ -544,12 +649,16 @@ strong {
 
 .footer-gradient {
     position: absolute;
-    bottom: 0; /* Si posiziona alla base del contenitore, direttamente sotto il footer */
+    bottom: 0;
+    /* Si posiziona alla base del contenitore, direttamente sotto il footer */
     left: 0;
     right: 0;
-    height: 100vh; /* 250px (altezza del footer) + 500px (altezza del gradiente) */
-    background: linear-gradient(to top, var(--color-accent-strong),transparent); /* Da nero opaco a trasparente */
-    z-index: -1; /* Si assicura che stia sotto gli altri elementi, compreso il footer */
+    height: 100vh;
+    /* 250px (altezza del footer) + 500px (altezza del gradiente) */
+    background: linear-gradient(to top, var(--color-accent-strong), transparent);
+    /* Da nero opaco a trasparente */
+    z-index: -1;
+    /* Si assicura che stia sotto gli altri elementi, compreso il footer */
     opacity: .25;
 }
 
@@ -558,9 +667,12 @@ strong {
     font-size: 12px;
     padding: 0px 0px;
     display: flex;
-    align-items: center; /* Ho cambiato 'end' in 'flex-end' per renderlo compatibile con le specifiche CSS */
-    position: relative; /* Questo assicura che il gradiente stia proprio sotto il footer */
-    z-index: 1; /* Mantiene il footer sopra il gradiente */
+    align-items: center;
+    /* Ho cambiato 'end' in 'flex-end' per renderlo compatibile con le specifiche CSS */
+    position: relative;
+    /* Questo assicura che il gradiente stia proprio sotto il footer */
+    z-index: 1;
+    /* Mantiene il footer sopra il gradiente */
     text-align: center;
 }
 
@@ -576,52 +688,52 @@ strong {
 
 
 
-    
+
 
     .col-m-1 {
         grid-column: span 1;
     }
-    
+
     .col-m-2 {
         grid-column: span 2;
     }
-    
+
     .col-m-3 {
         grid-column: span 3;
     }
-    
+
     .col-m-4 {
         grid-column: span 4;
     }
-    
+
     .col-m-5 {
         grid-column: span 5;
     }
-    
+
     .col-m-6 {
         grid-column: span 6;
     }
-    
+
     .col-m-7 {
         grid-column: span 7;
     }
-    
+
     .col-m-8 {
         grid-column: span 8;
     }
-    
+
     .col-m-9 {
         grid-column: span 9;
     }
-    
+
     .col-m-10 {
         grid-column: span 10;
     }
-    
+
     .col-m-11 {
         grid-column: span 11;
     }
-    
+
     .col-m-12 {
         grid-column: span 12;
     }
@@ -652,6 +764,7 @@ strong {
         justify-content: center;
         text-align: end;
     }
+
     .menu-container {
         height: 256px;
     }
@@ -676,30 +789,34 @@ strong {
     .menu-list a:hover {
         color: white;
     }
-    
+
     .menu-active .menu-list a {
         opacity: 1;
         transform: translateY(10px);
-        visibility: visible; 
-      }
-    
+        visibility: visible;
+    }
+
 
     .menu-list li:nth-child(1) a {
-        transition-delay: 0s; /* nessun ritardo per il primo elemento */
+        transition-delay: 0s;
+        /* nessun ritardo per il primo elemento */
     }
-    
+
     .menu-list li:nth-child(2) a {
-        transition-delay: 0.05s; /* 0.5s di ritardo per il secondo elemento */
+        transition-delay: 0.05s;
+        /* 0.5s di ritardo per il secondo elemento */
     }
-    
+
     .menu-list li:nth-child(3) a {
-        transition-delay: .1s; /* 1s di ritardo per il terzo elemento */
+        transition-delay: .1s;
+        /* 1s di ritardo per il terzo elemento */
     }
-    
+
     .menu-list li:nth-child(4) a {
-        transition-delay: .15s /* 1.5s di ritardo per il quarto elemento */
+        transition-delay: .15s
+            /* 1.5s di ritardo per il quarto elemento */
     }
-    
+
     .section-title {
         text-align: center;
         justify-content: center;
@@ -709,24 +826,32 @@ strong {
     }
 
     .project {
-        height: 500px; /* Altezza fissa */
-        display: flex; /* Flexbox per mettere gli elementi sulla stessa linea */
-        align-items: center; /* Centra verticalmente gli elementi figli */
-        transition: all 0.3s ease; /* Transizione fluida per gli effetti di hover */
-        max-width: 100%; /* Larghezza massima */
+        height: 500px;
+        /* Altezza fissa */
+        display: flex;
+        /* Flexbox per mettere gli elementi sulla stessa linea */
+        align-items: center;
+        /* Centra verticalmente gli elementi figli */
+        transition: all 0.3s ease;
+        /* Transizione fluida per gli effetti di hover */
+        max-width: 100%;
+        /* Larghezza massima */
         cursor: pointer;
         padding-bottom: 0px;
     }
 
     .project-description {
-        overflow: visible; /* Cambiato da hidden a visible */
+        overflow: visible;
+        /* Cambiato da hidden a visible */
         width: 25%;
         line-height: 48px;
     }
 
     .project-title {
-        white-space: nowrap; /* Evita che il testo vada a capo */
-        transition: all 0.3s ease; /* Transizioni per font-size e right */
+        white-space: nowrap;
+        /* Evita che il testo vada a capo */
+        transition: all 0.3s ease;
+        /* Transizioni per font-size e right */
         font-size: 32px;
         font-weight: 700;
         padding-top: 0px;
@@ -742,9 +867,11 @@ strong {
         width: 100%;
     }
 
-    .portfolio-project-subtitle, .project-details {
+    .portfolio-project-subtitle,
+    .project-details {
         padding-left: 0%;
-        transition: all 0.3s ease; /* Transizioni per font-size e right */
+        transition: all 0.3s ease;
+        /* Transizioni per font-size e right */
         line-height: 24px;
         font-size: 12px;
 
@@ -761,20 +888,27 @@ strong {
     }
 
     .project-details p {
-        font-size: 24px; /* Puoi modificare questo valore in base alle tue esigenze */
-        line-height: 24px; /* Assicura un buon allineamento verticale del testo */
+        font-size: 24px;
+        /* Puoi modificare questo valore in base alle tue esigenze */
+        line-height: 24px;
+        /* Assicura un buon allineamento verticale del testo */
         display: flex;
         align-items: center;
-        
+
     }
 
     .right-arrow {
-        width: 30px; /* Regola la larghezza dell'SVG */
-        height: 16px; /* Regola l'altezza dell'SVG */
+        width: 30px;
+        /* Regola la larghezza dell'SVG */
+        height: 16px;
+        /* Regola l'altezza dell'SVG */
         background: url('../img/right-arrow.svg') no-repeat center center;
-        background-size: contain; /* Questo farà in modo che l'SVG si adatti alle dimensioni del contenitore */
-        margin-left: 8px; /* Distanza dalla parola "more." */
+        background-size: contain;
+        /* Questo farà in modo che l'SVG si adatti alle dimensioni del contenitore */
+        margin-left: 8px;
+        /* Distanza dalla parola "more." */
     }
+
     .portfolio-project-image {
         width: 50%;
         position: relative;
@@ -785,17 +919,18 @@ strong {
     }
 
     .portfolio-project-image::before {
-        content: ""; 
+        content: "";
         display: block;
-        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        padding-top: 56.25%;
+        /* 16:9 Aspect Ratio */
     }
 
-    
+
     .project .portfolio-project-image {
         border: none;
     }
 
-    
+
     .portfolio-project-image img {
         position: absolute;
         top: 0;
@@ -803,20 +938,26 @@ strong {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center;         
+        object-position: center;
     }
-    
+
     /* Effetti di hover */
     .project:hover .project-title {
-         font-size: 64px; /* Rende il testo più grande */
-        position: relative; /* Posizionamento relativo per sovrapporsi all'immagine */
-        padding-left: 12.5%; /* Fa uscire il testo dal suo contenitore */
-        z-index: 10; /* Sovrapponi al resto del contenuto */
+        font-size: 64px;
+        /* Rende il testo più grande */
+        position: relative;
+        /* Posizionamento relativo per sovrapporsi all'immagine */
+        padding-left: 12.5%;
+        /* Fa uscire il testo dal suo contenitore */
+        z-index: 10;
+        /* Sovrapponi al resto del contenuto */
         color: var(--color-accent)
     }
 
-    .project:hover .portfolio-project-subtitle, .project:hover .project-details {
-        position: relative; /* Posizionamento relativo per sovrapporsi all'immagine */
+    .project:hover .portfolio-project-subtitle,
+    .project:hover .project-details {
+        position: relative;
+        /* Posizionamento relativo per sovrapporsi all'immagine */
         transform: translateX(12.5%);
     }
 
@@ -833,7 +974,8 @@ strong {
 
     .top-bar {
         position: fixed;
-        z-index: 5000;;
+        z-index: 5000;
+        ;
     }
 
     .shadow-top-bar {
@@ -841,12 +983,15 @@ strong {
         top: 0;
         left: 0;
         width: 100%;
-        height: 128px; /* puoi modificare l'altezza come desideri */
+        height: 128px;
+        /* puoi modificare l'altezza come desideri */
         background: linear-gradient(to bottom, var(--color-accent-strong), rgba(0, 0, 0, 0));
-        z-index: 4999; /* Così appare sotto la top-bar */
-        opacity: 0; /* inizialmente trasparente */
+        z-index: 4999;
+        /* Così appare sotto la top-bar */
+        opacity: 0;
+        /* inizialmente trasparente */
     }
-   
+
     .projects {
         height: 6;
     }
@@ -860,7 +1005,7 @@ strong {
     .content-grid.mobile {
         display: none;
     }
-    
+
 }
 
 /* Media Query per Desktop */
