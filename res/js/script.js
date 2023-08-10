@@ -6,113 +6,128 @@ $(document).ready(function() {
         isMobile = $(window).width() < 768;
     });
 
-    function animateMobileText($element) {
-        var parentWidth = $element.parent().width();
-        var textWidth = $element.width();
-        var spaceWidth = 50; // Larghezza dello spazio in pixel
-    
-        if (textWidth > parentWidth) {
-            var space = $('<span class="space">').css('width', spaceWidth + 'px');
-            $element.html($element.text() + space[0].outerHTML + $element.text());
-    
-            $element.addClass('animating');
-        }
+
+// Funzione per far scorrere il testo su mobile
+function scrollText($this, textWidth, spaceWidth) {
+    $this.animate({ "margin-left": -(textWidth + spaceWidth) }, 15000, "linear", function() {
+        $this.css("margin-left", 0);
+        scrollText($this, textWidth, spaceWidth); // Ricomincia l'animazione
+    });
+}
+
+// Funzione per impostare il testo corretto su desktop
+function setCorrectText($title, originalText, spaceWidth, numOfCopies) {
+    var space = $('<span class="space">').css('width', spaceWidth + 'px');
+    var newText = "";
+    for (var i = 0; i < numOfCopies; i++) {
+        newText += originalText + space[0].outerHTML;
     }
-    
-    function animateDesktopText($project) {
-        var $title = $project.find(".project-title p");
-        var originalText = $title.text();
-        var spaceWidth = 100; // Larghezza dello spazio in pixel
-        var numOfCopies = 10; // numero fisso di duplicati
-    
-        var setCorrectText = function() {
-            var space = $('<span class="space">').css('width', spaceWidth + 'px');
-            var newText = "";
-            for (var i = 0; i < numOfCopies; i++) {
-                newText += originalText + space[0].outerHTML;
-            }
-            $title.html(newText);
-        };
-    
-        $project.hover(
-            function() { // Mouse enter
-                setCorrectText();
-                $title.addClass('animating');
-            },
-            function() { // Mouse leave
-                $title.removeClass('animating').css('margin-left', 0).text(originalText);
-            }
-        );
-    }
-    
+    $title.html(newText);
+
+    return {
+        single: $title.width() / numOfCopies,
+        total: $title.width()
+    };
+}
+
+// Funzione per iniziare l'animazione su desktop
+function startAnimation($title, widths, spaceWidth) {
+    var animationDuration = 7500;
+    $title.stop().animate({ "margin-left": (-2 * (widths.single) + spaceWidth) }, animationDuration, "linear", function() {
+        $title.css("margin-left", 0);
+        startAnimation($title, widths, spaceWidth); // Ricomincia l'animazione
+    });
+}
+
+    // Animazione scorrimento testo se troppo lungo da mobile / animazione testo desktop durante hover
+setTimeout(() => {
     if (isMobile) {
+        // Scorrimento testo per mobile se il testo è troppo lungo
         $(".project-title p").each(function() {
-            animateMobileText($(this));
+            var $this = $(this);
+            var parentWidth = $this.parent().width();
+            var textWidth = $this.width();
+            var spaceWidth = 50;
+
+            if (textWidth > parentWidth) {
+                var space = $('<span class="space">').css('width', spaceWidth + 'px');
+                $this.html($this.text() + space[0].outerHTML + $this.text());
+                scrollText($this, textWidth, spaceWidth);
+            }
         });
     } else {
+        // Animazione del testo durante hover su desktop
         $(".project").each(function() {
-            animateDesktopText($(this));
+            var $project = $(this);
+            var $title = $project.find(".project-title p");
+            var originalText = $title.text();
+            var hoverTimeout;
+            var spaceWidth = 100;
+            var numOfCopies = 10;
+
+            $project.hover(
+                function() {
+                    var widths = setCorrectText($title, originalText, spaceWidth, numOfCopies);
+                    hoverTimeout = setTimeout(() => startAnimation($title, widths, spaceWidth), 500);
+                },
+                function() {
+                    clearTimeout(hoverTimeout);
+                    $title.stop().css("margin-left", 0).text(originalText);
+                }
+            );
         });
     }
+}, 100);
     
     
 
-    /* reset delle animazioni al resize */
-    var resizeTimeout;
-
-    $(window).on('resize', function() {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(function() {
-            // Esegui le operazioni qui dopo che il resize è stato completato
-        }, 250); // 250 millisecondi di ritardo
-    });
 
 
     /* COMPORTAMENTO MOBILE DELL'HOVER */
-
+    var debounceTimer;
+    var $projects = $('.project'); // Cache all the project elements
+    
     $(window).on('scroll', function() {
-        if (isMobile) {
-            let noEffectElement = $('.project:not(.mobile-inactive)'); // l'elemento attuale senza l'effetto
+        clearTimeout(debounceTimer);
+        
+        debounceTimer = setTimeout(function() {
+            if (isMobile) {
+                let windowTop = $(window).scrollTop();
+                let windowHeight = $(window).height();
+                
+                let $noEffectElement = $projects.filter(':not(.mobile-inactive)'); // Use cached project elements
     
-            // Se non esiste alcun elemento senza l'effetto
-            if (noEffectElement.length === 0) {
-                $('.project').each(function() {
-                    var windowTop = $(window).scrollTop();
-                    var windowHeight = $(window).height();
-                    var elementTop = $(this).offset().top;
-                    var elementBottom = elementTop + $(this).outerHeight();
-    
-                    // Se l'elemento corrente soddisfa le condizioni
-                    if (elementTop >= windowTop && elementBottom <= (windowTop + windowHeight)) {
-                        $(this).removeClass('mobile-inactive');
-                        return false; // interrompe il ciclo
-                    }
-                });
-            } 
-            // Se esiste un elemento senza l'effetto
-            else {
-                var windowTop = $(window).scrollTop();
-                var windowHeight = $(window).height();
-                var noEffectElementTop = noEffectElement.offset().top;
-                var noEffectElementBottom = noEffectElementTop + noEffectElement.outerHeight();
-    
-                // Se l'elemento attuale senza l'effetto non soddisfa più le condizioni
-                if (noEffectElementTop < windowTop || noEffectElementBottom > (windowTop + windowHeight)) {
-                    noEffectElement.addClass('mobile-inactive');
-    
-                    // Ciclo per trovare un altro elemento da cui rimuovere l'effetto
-                    $('.project').each(function() {
-                        var elementTop = $(this).offset().top;
-                        var elementBottom = elementTop + $(this).outerHeight();
-    
+                // Se non esiste alcun elemento senza l'effetto
+                if ($noEffectElement.length === 0) {
+                    for (let i = 0; i < $projects.length; i++) {
+                        let $currentProject = $($projects[i]);
+                        let elementTop = $currentProject.offset().top;
+                        let elementBottom = elementTop + $currentProject.outerHeight();
                         if (elementTop >= windowTop && elementBottom <= (windowTop + windowHeight)) {
-                            $(this).removeClass('mobile-inactive');
-                            return false; // interrompe il ciclo
+                            $currentProject.removeClass('mobile-inactive');
+                            break; // interrompe il ciclo
                         }
-                    });
+                    }
+                } 
+                // Se esiste un elemento senza l'effetto
+                else {
+                    var noEffectElementTop = $noEffectElement.offset().top;
+                    var noEffectElementBottom = noEffectElementTop + $noEffectElement.outerHeight();
+    
+                    if (noEffectElementTop < windowTop || noEffectElementBottom > (windowTop + windowHeight)) {
+                        $noEffectElement.addClass('mobile-inactive');
+                        for (let i = 0; i < $projects.length; i++) {
+                            let $currentProject = $($projects[i]);
+                            let elementTop = $currentProject.offset().top;
+                            let elementBottom = elementTop + $currentProject.outerHeight();
+                            if (elementTop >= windowTop && elementBottom <= (windowTop + windowHeight)) {
+                                $currentProject.removeClass('mobile-inactive');
+                                break;
+                            }
+                        }
+                    }
                 }
             }
-        }
+        }, 5);
     });
-    
 });

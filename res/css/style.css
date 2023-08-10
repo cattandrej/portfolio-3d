@@ -448,26 +448,26 @@ strong {
 
 /* Stili per Mobile (basati sullo scroll) */
 @media only screen and (max-width: 768px) {
+    .project.mobile-inactive .project-title, 
+    .project.mobile-inactive .portfolio-project-subtitle, 
+    .project.mobile-inactive .portfolio-project-image {
+        transform: translateX(12.5%);
+    }
+
     .project.mobile-inactive .project-title {
         position: relative;
-        padding-left: 12.5%;
+        
         z-index: 10;
         color: white;
     }
     
-    .project.mobile-inactive .portfolio-project-subtitle, 
     .project.mobile-inactive .project-details {
         position: relative;
-        transform: translateX(12.5%);
-    }
-    
-    .project.mobile-inactive .project-details {
         transform: translateX(50%);
-        opacity: 100%;
+        opacity: 1; /* Opacity should be between 0 and 1 */
     }
     
     .project.mobile-inactive .portfolio-project-image {
-        transform: translateX(12.5%);
         filter: drop-shadow(0 0 32px rgba(0, 0, 0, .25));
         border: solid 1px rgba(0, 0, 0, 0);
     }
@@ -476,9 +476,16 @@ strong {
         background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.25));
         mix-blend-mode: multiply;
         opacity: .85;
-    }}
+    }
+}
 
 
+
+
+.project-title p.animating {
+    transform: translate3d(0,0,0);
+    will-change: transform;
+}
 
 
 .top-bar {
@@ -580,22 +587,16 @@ strong {
 /* ************************************************************ */
 
 
-@keyframes slide {
-    to {
-        transform: translateX(-50%);
-    }
-}
 
-
-.project-title p.animating {
-    animation: slide 15s linear infinite;
-    transform: translate3d(0,0,0);
-    will-change: transform;
-}
 
 /* Media Query per Tablet */
 @media (min-width: 768px) {
+
     /* Adatta o estende gli stili per tablet ... */
+
+
+
+    
 
     .col-m-1 {
         grid-column: span 1;
