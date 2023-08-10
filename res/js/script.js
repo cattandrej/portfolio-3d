@@ -85,7 +85,7 @@ setTimeout(() => {
 
     /* COMPORTAMENTO MOBILE DELL'HOVER */
     var debounceTimer;
-    var $projects = $('.project'); // Cache all the project elements
+    var $projects = $('.project');
     
     $(window).on('scroll', function() {
         clearTimeout(debounceTimer);
@@ -94,33 +94,31 @@ setTimeout(() => {
             if (isMobile) {
                 let windowTop = $(window).scrollTop();
                 let windowHeight = $(window).height();
+                let windowBottom = windowTop + windowHeight;
                 
-                let $noEffectElement = $projects.filter(':not(.mobile-inactive)'); // Use cached project elements
+                let $noEffectElement = $projects.filter(':not(.mobile-inactive)');
     
-                // Se non esiste alcun elemento senza l'effetto
                 if ($noEffectElement.length === 0) {
                     for (let i = 0; i < $projects.length; i++) {
                         let $currentProject = $($projects[i]);
                         let elementTop = $currentProject.offset().top;
                         let elementBottom = elementTop + $currentProject.outerHeight();
-                        if (elementTop >= windowTop && elementBottom <= (windowTop + windowHeight)) {
+                        if (elementTop >= windowTop && elementBottom <= windowBottom) {
                             $currentProject.removeClass('mobile-inactive');
-                            break; // interrompe il ciclo
+                            break;
                         }
                     }
-                } 
-                // Se esiste un elemento senza l'effetto
-                else {
-                    var noEffectElementTop = $noEffectElement.offset().top;
-                    var noEffectElementBottom = noEffectElementTop + $noEffectElement.outerHeight();
+                } else {
+                    let noEffectElementTop = $noEffectElement.offset().top;
+                    let noEffectElementBottom = noEffectElementTop + $noEffectElement.outerHeight();
     
-                    if (noEffectElementTop < windowTop || noEffectElementBottom > (windowTop + windowHeight)) {
+                    if (noEffectElementTop < windowTop || noEffectElementBottom > windowBottom) {
                         $noEffectElement.addClass('mobile-inactive');
                         for (let i = 0; i < $projects.length; i++) {
                             let $currentProject = $($projects[i]);
                             let elementTop = $currentProject.offset().top;
                             let elementBottom = elementTop + $currentProject.outerHeight();
-                            if (elementTop >= windowTop && elementBottom <= (windowTop + windowHeight)) {
+                            if (elementTop >= windowTop && elementBottom <= windowBottom) {
                                 $currentProject.removeClass('mobile-inactive');
                                 break;
                             }
@@ -128,6 +126,7 @@ setTimeout(() => {
                     }
                 }
             }
-        }, 5);
+        }, 100);
     });
+    
 });
